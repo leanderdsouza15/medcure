@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color:  #8D5DC2; /* Blue shade */
+            border-radius: 25px; /* Adjust border-radius for a more rounded shape */
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+        }
+    
+        .back-button:hover {
+            background-color: #2980b9; /* Darker shade on hover */
+        }
+        /* CSS for the sort filter */
+        {% comment %} .sort {
+            position: absolute;
+            margin-top: 20px; /* Adjust the top margin as needed */
+            margin-bottom: 20px;
+        } {% endcomment %}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'img/backg.jpeg' %}") center/cover no-repeat fixed;
+            background-color: #f2f2f2;
+        }
+        /* Create a pseudo-element for the background blur */
+        body::before {
+            content: "";
+            background: url("{% static 'img/backg.jpeg' %}") center/cover no-repeat fixed;
+            filter: blur(5px); /* Adjust the blur amount as needed */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind the content */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #d0ecffa1;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            position: relative; 
+        }
+
+        h1, h2 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            text-align: center; /* Center align headings */
+        }
+        .hospital-card {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff; /* White background for each card */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            position: relative; /* For positioning the tooltips */
+            transition: transform 0.3s ease; /* Add smooth hover effect */
+        }
+        .hospital-card:hover {
+            transform: translateY(-5px); /* Lift the card slightly on hover */
+        }
+        .hospital-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .hospital-info h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #007bff; 
+        }
+        .hospital-info p {
+            margin: 5px 0;
+            flex: 1;
+        }
+        .hospital-image {
+            width: 160px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .icon-box img {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .no-results {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'lab_locator' %}" class="back-button">&lt; Back</a> 
+    <div class="container">
+        <h1>Search Results</h1>
+        <!-- Sort filter -->
+        {% comment %} <label for="sort">Sort by Cost:</label>
+        <select id="sort">
+            <option value="low">Low to High</option>
+            <option value="high">High to Low</option>
+        </select> {% endcomment %}
+        {% for hospital in hospitals %}
+            <div class="hospital-card">
+                <div class="hospital-info">
+                    <h2>{{ hospital.name }}</h2>
+                    <p>Address: {{hospital.address}}</p>
+                    <p>Location: {{ hospital.location }}</p>
+                    <p>Cost of Test: ₹{{ hospital.cost }} /-</p>
+                    <p>Phone Number: {{hospital.phone}}</p>
+
+                    <!-- Get Directions -->
+                    <div class="btn-group">
+                        {% if hospital.map_link %}
+                            <button class="btn" onclick="openDirections('{{ hospital.map_link }}')">Get Directions</button>
+                            <button class="btn" onclick="bookAppointment('{{ hospital.id }}', '{{ hospital.location }}', '{{ hospital.tests }}')">Book Appointment</button>
+
+                        {% else %}
+                            <p>No map link available</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if hospital.image %}
+                <img src="{{ hospital.image.url }}" alt="{{ hospital.name }} Image" class="hospital-image">
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if hospitals|length == 0 %}
+            <p class="no-results">No results found.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function openDirections(mapLink) {
+            window.open(mapLink, '_blank');
+        }
+
+        function bookAppointment(hospitalId, location, tests) {
+            // Assuming you want to pass the hospitalId, location, and tests to the appointments.html page, include them in the URL as query parameters
+            window.location.href = `/appointments.html?hospitalId=${hospitalId}&location=${location}&tests=${tests}`;
+        }
+
+        document.getElementById('sort').addEventListener('change', function() {
+            var sortValue = this.value;
+            var hospitalCards = document.querySelectorAll('.hospital-card');
+            var sortedHospitals = Array.from(hospitalCards).sort(function(a, b) {
+                var aCost = parseFloat(a.querySelector('.hospital-info p:nth-child(4)').innerText.split('₹')[1]);
+                var bCost = parseFloat(b.querySelector('.hospital-info p:nth-child(4)').innerText.split('₹')[1]);
+                
+                if (sortValue === 'low') {
+                    return aCost - bCost;
+                } else if (sortValue === 'high') {
+                    return bCost - aCost;
+                }
+            });
+
+            var container = document.querySelector('.container');
+            container.innerHTML = ''; // Clear existing content
+
+            // Append sorted hospitals to the container
+            sortedHospitals.forEach(function(hospital) {
+                container.appendChild(hospital);
+            });
+        });
+    </script>
+
+</body>
+</html>

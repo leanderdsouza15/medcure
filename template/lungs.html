@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Health Improvement - Tips and Benefits</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #e74c3c;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        article::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 60px;
+            right: 0;
+            bottom: 0;
+            background: url("{% static 'img/lungs.jpg' %}") center/cover no-repeat;
+            filter: blur(1px); /* Apply a 5px blur effect */
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #3498db;
+            color: #fff;
+            padding: 5px;
+        }
+
+        .tip {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* Add CSS animations and interactions here */
+        /* Example: */
+        .tip:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+        /* Add more animations and interactions as needed */
+    </style>
+</head>
+<body>
+    <a href="{% url 'articles' %}" class="back-button">&lt; Back</a>
+    <header>
+        <h1>Lung Health Improvement - Tips and Benefits</h1>
+    </header>
+    <article>
+        <p>Improving lung health is essential for overall well-being. Here are some tips and benefits:</p>
+
+        <h2>Benefits of Improved Lung Health</h2>
+        <ul>
+            <li>Reduced risk of respiratory conditions</li>
+            <li>Increased energy levels</li>
+            <li>Better overall health</li>
+            <li>Improved longevity</li>
+        </ul>
+
+        <h2>What to Eat for Improved Lung Health</h2>
+        <p>Eating a diet that boosts your lung health is crucial. Include foods like:</p>
+        <ul>
+            <li>Beets and beet greens</li>
+            <li>Peppers</li>
+            <li>Apples</li>
+            <li>Pumpkin</li>
+        </ul>
+
+        <h2>Lung Health Improvement Tips</h2>
+        <p>Here are some tips for improving your lung health:</p>
+        <ul>
+            <li>Avoid smoking in all forms</li>
+            <li>Reduce exposure to indoor and outdoor toxins and irritants</li>
+            <li>Exercise regularly</li>
+            <li>Eat a healthy diet</li>
+            <li>Get your vaccinations</li>
+            <li>Address allergies and asthma</li>
+        </ul>
+
+        <p class="tip">Remember, improved lung health leads to a healthier life.</p>
+    </article>
+</body>
+</html>

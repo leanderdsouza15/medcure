@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Page</title>
+    <link rel="stylesheet" href="{% static 'css/getstarted.css' %}">
+    <!-- Add Slick Slider CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <!-- Add Slick Slider Theme CSS (optional) -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+</head>
+<style>
+    .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 10px 20px;
+        background-color:  #8D5DC2; /* Blue shade */
+        border-radius: 25px; /* Adjust border-radius for a more rounded shape */
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    }
+
+    .back-button:hover {
+        background-color: #2980b9; /* Darker shade on hover */
+    }
+</style>
+<body>
+    <a href="{% url 'index' %}" class="back-button">&lt; Home</a>
+    <div class="slider">
+        <!-- Slide 1 -->
+        <div class="slide">
+            <img src="{% static 'img/intro1.jpeg' %}" alt="Your Image">
+            <div class="content">
+                <h1>Your Online<br>Medical Guide</h1>
+                <p>Search for medicines of your choice and get instant availability status and cost details in stores near you!</p>
+                <a href="{% url 'logo' %}" class="getstarted-button">GET STARTED</a>
+
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="{% static 'img/intro2.jpeg' %}" alt="Your Image">
+            <div class="content">
+                <h1>LAB TESTS AND<br>MORE...</h1>
+                <p>Get information about lab tests near you along with cost details and contact information.</p>
+                <a href="{% url 'logo' %}" class="getstarted-button">GET STARTED</a>
+
+            </div>
+        </div>
+
+        <!-- Slide 3 -->   
+        <div class="slide">
+            <img src="{% static 'img/intro3.jpeg' %}" alt="Your Image">
+            <div class="content">
+                <h1>LOCATE YOUR<br>MEDS AND TESTS</h1>
+                <p>Get location details for medicines and lab tests near you through our map feature.</p>
+                <a href="{% url 'logo' %}" class="getstarted-button">GET STARTED</a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Add jQuery (required for Slick Slider) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Add Slick Slider JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <!-- Initialize Slick Slider -->
+    <script>
+        $(document).ready(function(){ 
+            $('.slider').slick({
+                autoplay: true,
+                autoplaySpeed: 3000,
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color:  #8D5DC2; /* Blue shade */
+            border-radius: 25px; /* Adjust border-radius for a more rounded shape */
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+        }
+    
+        .back-button:hover {
+            background-color: #2980b9; /* Darker shade on hover */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'img/backg.jpeg' %}") center/cover no-repeat fixed;
+            background-color: #f2f2f2;
+        }
+        /* Create a pseudo-element for the background blur */
+        body::before {
+            content: "";
+            background: url("{% static 'img/backg.jpeg' %}") center/cover no-repeat fixed;
+            filter: blur(5px); /* Adjust the blur amount as needed */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind the content */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #d0ecffa1;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            position: relative; 
+        }
+        h1, h2 {
+            font-size: 24px;
+            color: White;
+            margin-bottom: 20px;
+            text-align: center; /* Center align headings */
+        }
+        .medicine-card {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff; /* White background for each card */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            position: relative; /* For positioning the tooltips */
+            transition: transform 0.3s ease; /* Add smooth hover effect */
+        }
+        .medicine-card:hover {
+            transform: translateY(-5px); /* Lift the card slightly on hover */
+        }
+        .medicine-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .medicine-info h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #007bff; 
+        }
+        .medicine-info p {
+            margin: 5px 0;
+            flex: 1;
+        }
+        .medicine-image {
+            width: 195px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .icon-box img {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <a href="{% url 'med_locator' %}" class="back-button">&lt; Back</a> 
+    
+    <div class="container">
+        <h1>Search Results</h1>
+        {% for medicine in medicines %}
+            <div class="medicine-card">
+                <div class="medicine-info">
+                    <h2>{{ medicine.store_name }}</h2>
+                    <p><b>Address:</b> {{ medicine.address }}</p>
+                    <p><b>Location:</b> {{ medicine.location }}</p>
+                    <p><b>Cost of Medicine:</b> ₹{{ medicine.cost }}</p>
+                    <p><b>Phone Number:</b> {{ medicine.phone }}</p>
+                    <p>
+                        <span class="icon-box">
+                            <img src="{% static 'img/uses_icon.png' %}" alt="Uses">
+                        </span>
+                        <b>Uses:</b> <span style="color: #007bff;">{{ medicine.uses }}</span> <!-- Change color to blue -->
+                    </p>
+                    <p>
+                        <span class="icon-box">
+                            <img src="{% static 'img/side_effects_icon.png' %}" alt="Side Effects">
+                        </span>
+                        <b>Side Effects:</b> <span style="color: #0056b3;">{{ medicine.side_effects }}</span> <!-- Change color to a different shade of blue -->
+                    </p>
+                    
+                    
+                    <!-- Get Directions -->
+                    <div class="btn-group">
+                        {% if medicine.map_link %}
+                            <button class="btn" onclick="openDirections('{{ medicine.map_link }}')">Get Directions</button>
+                        {% else %}
+                            <p>No map link available</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if medicine.image %}
+                    <img src="{{ medicine.image.url }}" alt="{{ medicine.medicine }} Image" class="medicine-image">
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if medicines|length == 0 %}
+            <p class="no-results">No results found.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function openDirections(mapLink) {
+            window.open(mapLink, '_blank');
+        }
+    </script>
+</body>
+</html>

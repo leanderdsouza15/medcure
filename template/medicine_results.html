@@ -1,0 +1,18 @@
+<!-- medicine_results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Search Results</title>
+</head>
+<body>
+    <h1>Medicine Search Results</h1>
+    <ul>
+        {% for medicine in results %}
+            <li>{{ medicine.name }} - {{ medicine.stores.count }} stores available</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

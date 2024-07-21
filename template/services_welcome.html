@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+</head>
+<body>
+    
+        <!-- Navigation bar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+      <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-image">
+      <a href="{% url 'index' %}"><span class="logo-text"><b>Medcure</b></span></a>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'welcome' %}">Home</a>
+      <a href="{% url 'about_welcome' %}">About</a>
+      <a href="{% url 'services_welcome' %}">Services</a>
+      <a href="{% url 'articles_welcome' %}">Articles</a>
+    </div>
+  </nav>
+  
+    
+
+    <section class="service">
+        <div class="service-img">
+            <div class="lottie" data-animation-path="{% static 'img/medi.json' %}"></div>
+        </div>
+        <div class="service-info">
+            <h2>Medical Store Locator</h2>
+            <p>With Medcure’s Medical Store Locator, easily locate the nearest medical store to purchase the medicines you need.</p>
+            <ul>
+                <li>Easily find nearby medical stores.</li>
+                <li>Search for specific medicines.</li>
+                <li>View availability and contact details of stores.</li>
+            </ul>
+            <a href="{% url 'med_locator' %}" class="service-btn">Explore</a>
+        </div>
+    </section>
+
+    <section class="service">
+        <div class="service-img">
+            <div class="lottie" data-animation-path="{% static 'img/lab1.json' %}"></div>
+        </div>
+        <div class="service-info">
+            <h2>Lab Test Finder</h2>
+            <p>Our Lab Test Finder helps you locate the nearest lab to get tests done with comprehensive lab listings.</p>
+            <ul>
+                <li>Locate the nearest labs for comprehensive tests.</li>
+                <li>Get information on available tests and pricing.</li>
+                <li>Schedule appointments with just a call (contact details available).</li>
+            </ul>
+            <a href="{% url 'lab_locator' %}" class="service-btn">Explore</a>
+        </div>
+    </section>
+
+    <section class="service">
+        <div class="service-img">
+            <div class="lottie" data-animation-path="{% static 'img/art1.json' %}"></div>
+        </div>
+        <div class="service-info">
+            <h2>Health Articles</h2>
+            <p>Access articles on healthy living, wellness practices, and preventive measures to maintain or improve overall health.</p>
+            <ul>
+                <li>Access informative articles on healthy living.</li>
+                <li>Explore wellness practices for better health.</li>
+                <li>Discover preventive measures for overall well-being.</li>
+            </ul>
+            <a href="{% url 'articles' %}" class="service-btn">Explore</a>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.8/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const lottieContainers = document.querySelectorAll('.service');
+    lottieContainers.forEach(container => {
+        let animationPath;
+        if (container.id === 'medi') {
+            animationPath = 'medi.json';
+        } else if (container.id === 'lab') {
+            animationPath = 'lab1.json';
+        } else if (container.id === 'art') {
+            animationPath = 'art1.json';
+        }
+        // Change IDs and paths accordingly
+        const animation = lottie.loadAnimation({
+            container: container.querySelector('.lottie'), // Change this to target the specific div containing the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: animationPath
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

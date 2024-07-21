@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Med Locator</title>
+    <link rel="stylesheet" href="{% static 'css/medfinder.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* Your additional CSS styles go here */
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+          <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-image">
+          <a href="{% url 'index' %}"><span class="logo-text"><b>Medcure</b></span></a>
+        </div>
+        <div class="nav-links">
+          <a href="{% url 'welcome' %}">Home</a>
+          <a href="{% url 'about_welcome' %}">About</a>
+          <a href="{% url 'services_welcome' %}">Services</a>
+          <a href="{% url 'articles_welcome' %}">Articles</a>
+        </div>
+      </nav>
+
+    <div class="search-section">
+        <h2 class="test-name">What drug are you looking for <span id="dynamic-test">Crocin</span>?</h2>
+        <form method="POST" action="{% url 'med_results' %}" class="search-bar">
+            {% csrf_token %}
+            <select name="location" class="location-dropdown">
+                <option value="">Select Location</option>
+                <option value="Malad">Malad</option>
+                <option value="Bandra">Bandra</option>
+                <option value="Santacruz">Santacruz</option>
+            </select>
+            <input type="text" name="test" placeholder="Search for medicines" class="test-input">
+            <button type="submit" class="search-button">Search</button>
+            <!-- auto suggestions container -->
+            <div id="auto-suggestions"></div>
+        </form>
+        
+        <img src="{% static 'img/phar.jpeg' %}" alt="Background Image" class="background-image">
+    </div>
+
+     <!-- Featured Section -->
+<div class="featured-section">
+    <!-- Featured Medicines -->
+    <div class="featured-item">
+        <img src="{% static 'img/pills.png' %}" alt="Medicine Icon" class="featured-icon">
+        <h3>Featured Medicines</h3>
+        <ul>
+            <li><a href="#">Vitamin C</a></li>
+            <li><a href="#">Antibiotics</a></li>
+            <li><a href="#">Allergy Medication</a></li>
+        </ul>
+    </div>
+
+    <!-- Health Tips -->
+    <div class="featured-item">
+        <img src="{% static 'img/health-check.png' %}" alt="Health Tips Icon" class="featured-icon">
+        <h3>Health Tips</h3>
+        <ul>
+            <li><a href="#">10 Tips for Better Sleep</a></li>
+            <li><a href="#">How to Boost Your Immune System</a></li>
+            <li><a href="#">Healthy Eating Habits</a></li>
+        </ul>
+    </div>
+
+    <!-- Recent Searches -->
+    <div class="featured-item">
+        <img src="{% static 'img/recent.png' %}" alt="Search Icon" class="featured-icon">
+        <h3>Recent Searches</h3>
+        <ul>
+            <li><a href="#">Blood Pressure Medication</a></li>
+            <li><a href="#">Antidepressants</a></li>
+            <li><a href="#">Cough Syrup</a></li>
+        </ul>
+    </div>
+</div>
+
+    <!-- Alphabetical Listings of Medicines -->
+<div class="alphabetical-list">
+    <div class="medicines-container">
+        <h3>Top Searched Medicines</h3>
+    <ul class="medicines-list">
+        <li><a href="#">Aspirin</a></li>
+        <li><a href="#">Amoxicillin</a></li>
+        <li><a href="#">Acetaminophen</a></li>
+        <li><a href="#">Albuterol</a></li>
+        <li><a href="#">Atorvastatin</a></li>
+        <li><a href="#">Amlodipine</a></li>
+        <li><a href="#">Azithromycin</a></li>
+        <li><a href="#">Ciprofloxacin</a></li>
+        <li><a href="#">Celecoxib</a></li>
+        <li><a href="#">Cetirizine</a></li>
+        <li><a href="#">Cephalexin</a></li>
+        <li><a href="#">Doxycycline</a></li>
+        <li><a href="#">Esomeprazole</a></li>
+        <li><a href="#">Furosemide</a></li>
+        <li><a href="#">Fluoxetine</a></li>
+        <li><a href="#">Gabapentin</a></li>
+        <li><a href="#">Hydrochlorothiazide</a></li>
+        <li><a href="#">Ibuprofen</a></li>
+        <li><a href="#">Lisinopril</a></li>
+        <li><a href="#">Metformin</a></li>
+        <li><a href="#">Metoprolol</a></li>
+        <li><a href="#">Naproxen</a></li>
+        <li><a href="#">Omeprazole</a></li>
+        <li><a href="#">Prednisone</a></li>
+        <li><a href="#">Ranitidine</a></li>
+        <li><a href="#">Simvastatin</a></li>
+        <li><a href="#">Tramadol</a></li>
+        <li><a href="#">Venlafaxine</a></li>
+        <!-- Add more medicine names as needed -->
+    </ul>
+</div>
+</div>
+
+<div class="feedback-section">
+    <h2 class="section-title">Feedback</h2>
+    <p class="section-description">We value your feedback! Please share your thoughts with us.</p>
+    <form id="feedbackForm" class="feedback-form" method="POST" action="{% url 'submit_feedback' %}" >
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="message"><i class="fas fa-pencil-alt"></i> Your Feedback:</label>
+            <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="feedback-rating">How do you rate your experience using Med Locator?</label>
+            <div class="rating">
+                <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+            </div>    
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+    </form>
+</div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const testNames = ["Aspirin", "Amoxicillin", "Vitamin C", "Paracetamol"]; // Add more test names as needed
+            let index = 0;
+
+            function rotateTestName() {
+                index = (index + 1) % testNames.length;
+                document.getElementById("dynamic-test").textContent = testNames[index];
+            }
+
+            setInterval(rotateTestName, 3000); // Change test name every 3 seconds
+
+
+        // Add animations
+        const featuredItems = document.querySelectorAll('.featured-item');
+
+        featuredItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+            });
+
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const inputField = document.querySelector(".test-input");
+        const autoSuggestions = document.getElementById("auto-suggestions");
+    
+        inputField.addEventListener("input", function() {
+            const searchTerm = inputField.value.trim();
+    
+            if (searchTerm.length === 0) {
+                autoSuggestions.classList.remove("show");
+                return;
+            }
+    
+            fetch(`/auto/?term=${encodeURIComponent(searchTerm)}`)
+                .then(response => response.json())
+                .then(data => {
+                    autoSuggestions.innerHTML = "";
+                    data.forEach(testName => {
+                        const suggestion = document.createElement("div");
+                        suggestion.textContent = testName;
+                        suggestion.classList.add("auto-suggestion");
+                        autoSuggestions.appendChild(suggestion);
+                    });
+                    autoSuggestions.classList.add("show");
+                })
+                .catch(error => {
+                    console.error("Error fetching auto suggestions:", error);
+                });
+        });
+    
+        autoSuggestions.addEventListener("click", function(event) {
+            if (event.target.classList.contains("auto-suggestion")) {
+                inputField.value = event.target.textContent;
+                autoSuggestions.classList.remove("show");
+            }
+        });
+    
+        document.addEventListener("click", function(event) {
+            if (!event.target.matches(".test-input") && !event.target.matches(".auto-suggestion")) {
+                autoSuggestions.classList.remove("show");
+            }
+        });
+    });
+    
+    </script>
+</body>
+</html>

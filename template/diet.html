@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Diet - Tips and Benefits</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #e74c3c;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        article::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 60px;
+            right: 0;
+            bottom: 0;
+            background: url("{% static 'img/diet.jpeg' %}") center/cover no-repeat; 
+            filter: blur(1px); /* Apply a 5px blur effect */
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #3498db;
+            color: #fff;
+            padding: 5px;
+        }
+
+        .tip {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+
+        .tip:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        
+
+        /* Add more animations and interactions as needed */
+    </style>
+</head>
+<body>
+    <a href="{% url 'articles' %}" class="back-button">&lt; Back</a>
+    <header>
+        <h1>Healthy Diet - Tips and Benefits</h1>
+    </header>
+    <article>
+        <p>A healthy diet is essential for overall well-being. Here are some tips and benefits:</p>
+
+        <h2>Benefits of a Healthy Diet</h2>
+        <ul>
+            <li>May help you live longer</li>
+            <li>Keeps skin, teeth, and eyes healthy</li>
+            <li>Supports muscles</li>
+            <li>Boosts immunity</li>
+            <li>Strengthens bones</li>
+            <li>Lowers risk of heart disease, type 2 diabetes, and some cancers</li>
+            <li>Helps achieve and maintain a healthy weight</li>
+        </ul>
+
+        <h2>What to Eat for a Healthy Diet</h2>
+        <p>Eating a healthy diet is crucial. Include foods like:</p>
+        <ul>
+            <li>Vegetables and fruits</li>
+            <li>Whole grains</li>
+            <li>Lean proteins</li>
+            <li>Fatty fish rich in omega-3</li>
+        </ul>
+
+        <h2>Diet Tips</h2>
+        <p>Here are some tips for maintaining a healthy diet:</p>
+        <ul>
+            <li>Eat a variety of nutrient-rich foods.</li>
+            <li>Avoid foods with trans fats, added salt, and sugar.</li>
+            <li>Eat moderate portions.</li>
+            <li>Drink plenty of water.</li>
+        </ul>
+
+        <p class="tip">Remember, a healthy diet leads to a healthier life.</p>
+    </article>
+</body>
+</html>

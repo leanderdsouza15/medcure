@@ -1,0 +1,473 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+}
+
+.container {
+    position: relative;
+}
+
+.container a {
+    color: #1E65CF;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    margin-right: 20px;
+}
+
+.search-section {
+    position: relative;
+}
+
+.search-bar {
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 990px;
+    z-index: 1; /* Ensure the search bar appears in front of the background image */
+    transition: height 0.3s ease; /* Add transition for height changes */
+}
+
+.location-dropdown,
+.test-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 18px;
+    margin: 0 10px;
+    background-color: #f2f4f8; /* Light gray background */
+}
+
+.search-bar.expanded {
+    height: 200px; /* Adjust height to accommodate suggestions */
+}
+
+.search-button {
+    background-color: #9183ff;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #3a0063;
+}
+
+.background-image {
+    width: 100%; /* Adjust as needed */
+    height: 510px; /* Adjust as needed */
+    object-fit: cover;
+    position: relative;
+    top: 0px;
+}
+
+.test-name {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 26%;
+    left: 10%;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
+    padding: 13px 100px; /* Adjust padding as needed */
+    border-radius: 10px; /* Optional: Add border radius for rounded corners */
+}
+
+/* Profile box */
+.profile-box {
+    position: fixed;
+    top: 24px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+}
+
+.profile-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #1E65CF;
+}
+
+/* Dropdown style */
+.profile-dropdown {
+    position: absolute;
+    top: 70px; /* Adjust the top position as needed */
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none; /* Hide by default */
+    z-index: 100;
+    padding: 10px;
+    min-width: 160px; /* Set minimum width */
+}
+
+/* Display dropdown when profile box is clicked */
+.profile-box.clicked .profile-dropdown {
+    display: block;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-dropdown a:hover {
+    background-color: #f5f5f5;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 18px;
+    color: #1E65CF;
+    margin-bottom: 5px;
+}
+
+.logout-link {
+    color: #FF6347;
+    font-weight: bold;
+}
+
+#dynamic-test {
+    color: #9183ff; /* Change the color as needed */
+    font-weight: bold;
+}
+
+/* Featured Section Styles */
+.featured-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 115px;
+}
+
+.featured-item {
+    width: 30%;
+    padding: 20px;
+    background-color: #3a0063;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: 3px solid;
+    border-image: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+    border-image-slice: 1;
+}
+
+.featured-item:hover {
+    transform: translateY(-5px);
+}
+
+.featured-item h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.featured-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.featured-item ul li {
+    margin-bottom: 10px;
+}
+
+.featured-item ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.featured-icon {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    margin-bottom: 10px;
+}
+
+
+
+/* Alphabetical Listings CSS */
+.alphabetical-list {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.alphabetical-list h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.medicines-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: hsl(239, 100%, 92%);
+}
+
+.medicines-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.medicines-list li {
+    margin: 0 10px 10px 0;
+}
+
+.medicines-list li a {
+    display: block;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.medicines-list li a:hover {
+    background-color: #f9ddff;
+}
+
+
+
+#auto-suggestions {
+    position: absolute;
+    width: 100%; /* Match the width of the search bar */
+    top: calc(100% + 10px); /* Adjusted top position */
+    left: 0; /* Align suggestions with the left edge of the search bar */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 15px;
+    border-radius: 40px;
+}
+
+#auto-suggestions.show {
+    display: block;
+}
+
+#auto-suggestions .auto-suggestion {
+    padding: 15px;
+    font-family: 'Inter', sans-serif; /* Match the font family */
+    font-size: 18px; /* Match the font size */
+    color: #333; /* Match the text color */
+}
+
+#auto-suggestions .auto-suggestion:hover {
+    background-color: #f2f2f2; /* Match the hover background color */
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+#auto-suggestions .auto-suggestion:nth-child(n+6) {
+    display: none; /* Hide suggestions starting from the 6th element */
+}
+
+/* Hide the default scrollbar */
+#auto-suggestions::-webkit-scrollbar {
+    display: none;
+}
+
+/* Show a custom scrollbar for WebKit browsers */
+#auto-suggestions::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+/* Track */
+#auto-suggestions::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the track */
+}
+
+/* Handle */
+#auto-suggestions::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+}
+
+/* Handle on hover */
+#auto-suggestions::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar handle on hover */
+}
+
+#dynamic-test {
+    color: #ff8383; /* Change the color as needed */
+    font-weight: bold;
+}
+
+.feedback-section {
+    background-image: linear-gradient(to bottom, #f9f9f9, #d6d7ff); /* Gradient background */
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section-description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.feedback-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.feedback-form .form-group {
+    margin-bottom: 20px;
+}
+
+.feedback-form label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.feedback-form input[type="text"],
+.feedback-form input[type="email"],
+.feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.feedback-form button {
+    background-color: #3a0063;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+    background-color: #1E65CF;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label {
+    position: relative;
+    width: 1.1em;
+    font-size: 10vw;
+    color: #FFD700;
+    cursor: pointer;
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+.rating > input:checked ~ label:before {
+    opacity: 1;
+}
+
+/* .rating > label:hover:before,
+.rating > label:hover ~ label:before {
+    opacity: 1 !important;
+} */
+
+.rating > input:checked ~ label:before {
+    opacity: 1;
+}
+.navbar {
+    background-color: #dac5ff80;
+    color: #52009ec9;
+    padding: 10px 26px; /* Top and bottom padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    display: flex;       
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 60px; /* Adjust the size of your logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    font-size: 24px;
+  }
+  
+  .logo-text a {
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .nav-links a {
+    color: #52009ec9;
+    text-decoration: none; /* Remove underline from links */
+    font-size: 22px; /* Font size for navigation links */
+  }

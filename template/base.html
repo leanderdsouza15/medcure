@@ -1,0 +1,139 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Locator</title>
+    <link rel="stylesheet" href="{% static 'css/labfinder.css' %}">
+    <style>
+        /* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+}
+
+.container {
+    position: relative;
+}
+
+.container a.logo {
+    color: #1E65CF;
+    font-size: 35px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #1E65CF;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    margin-right: 20px;
+}
+
+/* Profile box */
+.profile-box {
+    position: fixed;
+    top: 24px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+}
+
+.profile-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #1E65CF;
+}
+
+/* Dropdown style */
+.profile-dropdown {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 100;
+    padding: 10px;
+    min-width: 160px;
+}
+
+/* Display dropdown when profile box is clicked */
+.profile-box.clicked .profile-dropdown {
+    display: block;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-dropdown a:hover {
+    background-color: #f5f5f5;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 18px;
+    color: #1E65CF;
+    margin-bottom: 5px;
+}
+
+.logout-link {
+    color: #FF6347;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <a href="{% url 'welcome' %}"><span style="width: 230px; height: 55px; left: 37px; top: 19px; position: absolute; color: #1E65CF; font-size: 35px; font-family: Inter; font-weight: 700; word-wrap: break-word">medcure</span></a>
+        <a href="{% url 'welcome' %}"><span style="left: 358px; top: 26px; position: absolute; color: #1E65CF; font-size: 25px; font-family: Inter; font-weight: 300; word-wrap: break-word">Home</span></a>
+        <a href="{% url 'about' %}"><span style="left: 492px; top: 26px; position: absolute; color: #1E65CF; font-size: 25px; font-family: Inter; font-weight: 300; word-wrap: break-word">About</span></a>
+        <a href="{% url 'services' %}"><span style="left: 620px; top: 26px; position: absolute; color: #1E65CF; font-size: 25px; font-family: Inter; font-weight: 300; word-wrap: break-word">Services</span></a>
+        <a href="{% url 'articles' %}"><span style="left: 781px; top: 26px; position: absolute; color: #1E65CF; font-size: 25px; font-family: Inter; font-weight: 300; word-wrap: break-word">Articles</span></a>
+
+        <!-- Profile Box Code -->
+        <div class="profile-box" id="profileBox">
+            <img class="profile-image" src="{% static 'img/user.png' %}" alt="User">
+            <div class="profile-dropdown">
+                <span class="username">Welcome {{ user_name }}!</span>
+                <a href="{% url 'login' %}" class="logout-link">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,829 @@
+/* Styling the navigation bar */
+body {
+    overflow-x: hidden;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar {
+    background-color: #dac5ff80;
+    color: #52009ec9;
+    padding: 10px 26px; /* Top and bottom padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    display: flex;       
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 60px; /* Adjust the size of your logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    font-size: 24px;
+  }
+  
+  .logo-text a {
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: left; /* Center the navigation links horizontally */
+    gap: 50px;
+}
+  
+  .nav-links a {
+    color: #52009ec9;
+    text-decoration: none; /* Remove underline from links */
+    font-size: 22px; /* Font size for navigation links */
+  }
+  
+  /* Styling for admin link */
+  .admin-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #52009ec9;
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+  }
+  
+  .admin-link:hover {
+    transform: scale(1.1);
+  }
+  
+  .admin-image {
+    width: 30px; /* Adjust the size of the admin logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add space between admin image and text */
+  }
+  
+  .admin-text {
+    font-size: 18px;
+    color: #52009ec9; /* Blue color for text */
+    transition: color 0.3s;
+  }
+  
+  .admin-link:hover .admin-text {
+    color: #1E65CF; /* Darker blue color on hover */
+  }
+  
+  .user-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .admin-link img {
+    width: 35px; /* Adjust the size as needed */
+    height: auto;
+    margin-right: 40px;
+  }
+  
+  .get-started {
+    background-color: #1E65CF;
+    color: white;
+    padding: 10px 13px;
+    border-radius: 18px;
+    border: 3px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s, color 0.3s;
+    font-size: 17px;
+    font-family: Georgia;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  
+  .get-started:hover {
+    transform: scale(1.1);
+    background: white;
+    color: #1E65CF;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Define the marquee container styles */
+  .marquee {
+    width: 100%;
+    white-space: nowrap;
+    position: absolute;
+    top: 86px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+    text-align: center;
+  }
+  
+  /* Define the marquee text styles */
+  .marquee p {
+    
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(138, 43, 226, 0.5);
+    position: relative;
+    animation: marquee 15s linear infinite;
+  }
+  
+  /* Create the marquee animation for text */
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Create the static gradient background */
+  .marquee::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6fff, #8a2be2, #ff6fff);
+    background-size: 200% 100%;
+    animation: background 15s linear infinite;
+  }
+  
+  /* Create the animation for the static gradient background */
+  @keyframes background {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+  
+  /* Styling for the new section */
+  .about-section {
+    position: relative;
+    padding: 100px 0; /* Adjust padding as needed */
+  }
+  
+  .background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .blur-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px); /* Adjust the blur amount (e.g., 10px) */
+  }
+  
+  .about-content {
+    max-width: 800px;
+    margin: 50px auto 0; /* Adjust top margin to move the content down */
+    text-align: center;
+    color: #000d2f;
+  }
+  
+  .about-content h2 {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .about-content p {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .locate-now {
+    background-color: #1e65cfab;
+    color: white;
+    padding: 15px 25px;
+    border: 2px solid #ddebff; /* Blue border */
+    border-radius: 20px;
+    font-size: 26px;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    display: inline-block;
+    margin-top: -13px;
+  }
+  
+  .locate-now:hover {
+    background-color: #8a2be270;
+    color: white;
+    transform: translateY(3px);
+  }
+  
+  /* Styling for the About Us section */
+  .about-us-section {
+    padding: 90px 30px; /* Adjust padding as needed */
+  }
+  
+  .container {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Align content horizontally */
+    align-items: center; /* Align content vertically */
+  }
+  
+  .about-content-left {
+    width: 90%;
+    font-size: 26px;
+  }
+  
+  .about-content-left h2,
+  .about-content-left p {
+    text-align: left; /* Align text to the left */
+  }
+  
+  .logo-container-big {
+    width: 60%; /* Adjust width as needed */
+    text-align: right; /* Align the logo to the right */
+  }
+  
+  .logo-big-image {
+    width: 350px; /* Adjust the size of the big logo */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .about-content,
+    .logo-container {
+      width: 100%;
+      margin-right: 0;
+      text-align: center;
+    }
+  }
+  
+  /* Styling for the new section */
+  .book-test-section {
+    background-color: #dac5ff80; /* Light purple background */
+    padding: 70px 0; /* Adjust padding as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background: #fff; /* White background for card */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%; /* Adjust width as needed */
+    max-width: 770px; /* Limit maximum width of the card */
+  }
+  
+  .card-wrapper {
+    padding: 95px;
+    text-align: center; /* Center the contents of the card */
+  }
+  
+  .card-title {
+    font-size: 38px;
+    font-weight: bold;
+    color: #000; /* Black text color */
+    margin-bottom: 33px;
+  }
+  
+  .card-btn {
+    text-align: center;
+  }
+  
+  .book-now-btn {
+    background-color: #1E65CF; /* Blue background */
+    color: #fff; /* White text color */
+    padding: 12px 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 26px;
+  }
+  
+  .book-now-btn:hover {
+    background-color: #8a2be2; /* Light purple background on hover */
+    color: #fff; /* White text color on hover */
+  }
+  /* Profile box styles */
+/* Profile box styles */
+.profile-box {
+  position: relative;
+  z-index: 1; /* Ensure the profile box appears above other elements */
+}
+
+.profile-image {
+  width: 40px; /* Adjust size as needed */
+  height: auto;
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 10px); /* Position dropdown below the profile image */
+  right: 0;
+  background-color: #fff; /* Background color of the dropdown */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+  padding: 20px; /* Add padding */
+  display: none; /* Initially hide the dropdown */
+  width: 141px; /* Adjust the width as needed */
+  z-index: 2; /* Ensure the dropdown appears above other elements */
+  text-align: center; /* Center-align the text */
+}
+
+
+
+.profile-box.clicked .profile-dropdown {
+  display: block; /* Show dropdown when profile box is clicked */
+}
+
+.username {
+  font-weight: bold;
+}
+
+.logout-link {
+  color: #555; /* Link color */
+  text-decoration: none; /* Remove default underline */
+  display: block; /* Make the link a block element for better spacing */
+  margin-top: 10px; /* Add margin to separate from username */
+}
+
+.logout-link:hover {
+  text-decoration: underline; /* Underline link on hover */
+}
+
+
+/* Styling for the Our Services section */
+.our-services-section {
+    background-color: #ffffff; /* Light gray background */
+    padding: 100px 0; /* Adjust padding as needed */
+  }
+  
+  .services-content-left {
+    width: 30%; /* Adjust width as needed */
+    font-size: 28px;
+    color: #1E65CF; /* Blue color for title */
+  }
+  
+  .services-content-left h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .services-content-right {
+    width: 70%; /* Adjust width as needed */
+    display: flex;
+    justify-content: space-between;
+    gap: 30px; /* Add space between cards */
+  }
+  
+  .service-card {
+    width: 30%; /* Adjust width as needed */
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .service-image {
+    width: 120px; /* Adjust image size as needed */
+    height: 120px; /* Maintain aspect ratio */
+    margin-bottom: 20px;
+    border-radius: 50%; /* Make images circular */
+    border: 3px solid #1E65CF; /* Blue border */
+  }
+  
+  .service-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333; /* Dark text color */
+  }
+  
+  .service-card p {
+    font-size: 18px;
+    color: #555; /* Dark gray text color */
+  }
+  
+  /* Styling for the Our Services section */
+  .our-services-section {
+    background-color: #f5f5f5; /* Light gray background */
+    padding: 100px 0; /* Adjust padding as needed */
+  }
+  
+  .services-content-left {
+    width: 30%; /* Adjust width as needed */
+    font-size: 28px;
+    color: #000000; /* Blue color for title */
+  }
+  
+  .services-content-left h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .services-content-right {
+    width: 70%; /* Adjust width as needed */
+    display: flex;
+    justify-content: space-between;
+    gap: 30px; /* Add space between cards */
+  }
+  
+  .service-card {
+    width: calc(33.33% - 20px); /* Adjust width and spacing as needed */
+    text-align: center;
+    padding: 26px;
+    background-color: #ada1f74d; /* White background */
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .service-image {
+    width: 100%;
+    height: 180px; /* Adjust height as needed */
+    overflow: hidden;
+    border-radius: 20px 20px 0 0; /* Rounded top corners */
+    border: 3px solid #55027a;
+  }
+  
+  .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .service-card:hover .service-image img {
+    transform: scale(1.1);
+  }
+  
+  .service-info {
+    padding: 20px;
+  }
+  
+  .service-card h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #333; /* Dark text color */
+  }
+  
+  .service-card p {
+    font-size: 18px;
+    color: #555; /* Dark gray text color */
+  }
+  
+  
+  /* Styling for the View all services button */
+  .view-all-services {
+    text-align: center;
+    margin-top: 50px; /* Adjust margin as needed */
+  }
+  
+  .view-services-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1E65CF; /* Blue background */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border-radius: 30px; /* Rounded border */
+    font-size: 20px;
+    text-decoration: none;
+    border: 2px solid #1E65CF; /* Blue border */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s, border-color 0.3s;
+  }
+  
+  .view-services-btn:hover {
+    background-color: #8a2be2; /* Light purple background on hover */
+    color: #fff; /* White text color on hover */
+    transform: translateY(-3px); /* Move button up on hover */
+    border-color: #8a2be2; /* Light purple border on hover */
+  }
+  
+  .view-services-btn i {
+    margin-left: 5px; /* Add space between text and arrow icon */
+    font-size: 24px; /* Adjust icon size */
+  }
+  
+  
+   /* CSS for Features and Benefits section */
+.features-benefits-section {
+  padding: 50px 0;
+  background-color: #d9e5ff;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.features, .benefits {
+  width: 45%;
+}
+
+.feature-list, .benefits-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.feature-item, .benefit-item {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  margin-right: 10px;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  background-color: #3498db; /* Example color, you can change this */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.arrow {
+  margin-right: 10px;
+  font-size: 18px; /* Adjust size as needed */
+  color: #333; /* Arrow color */
+}
+
+.center-image {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.center-image img {
+  max-width: 100%;
+  height: auto;
+}
+  
+/* FAQ SECTION */
+@import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f0f0;
+  font-family: "Muli", sans-serif;
+}
+
+h1 {
+  margin: 50px 0 80px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.faq-section {
+  background-color: #ffffff;
+  padding: 80px 0;
+}
+
+.faq-container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.faq {
+  background-color: #e5dbf8;
+  border: 2px solid #55027a;
+  border-radius: 10px;
+  margin: 20px 0;
+  overflow: hidden;
+  padding: 30px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.faq:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.faq.active {
+  background-color: #e2e2ff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.faq.active::before,
+.faq.active::after {
+  color: #2ecc71;
+  content: "\f075";
+  font-family: "Font Awesome 6 Free";
+  font-size: 7rem;
+  left: 20px;
+  opacity: 0.2;
+  position: absolute;
+  top: 20px;
+  z-index: 0;
+}
+
+.faq.active::before {
+  color: #3498db;
+  left: -30px;
+  top: -10px;
+  transform: rotateY(180deg);
+}
+
+.faq-title {
+  margin: 0 35px 0 0;
+}
+
+.faq-text {
+  display: none;
+  margin: 30px 0 0;
+}
+
+.faq.active .faq-text {
+  display: block;
+}
+
+.faq-toggle {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  font-size: 1rem;
+  height: 30px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 30px;
+}
+.faq-toggle .fa-times,
+.faq.active .faq-toggle .fa-chevron-down {
+  display: none;
+}
+
+.faq.active .faq-toggle .fa-times {
+  color: #fff;
+  display: block;
+}
+
+.faq-toggle .fa-chevron-down {
+  display: block;
+}
+
+.faq.active .faq-toggle {
+  background-color: #9fa4a8;
+}
+
+
+/* CONTACT SECTION */
+.contact-section {
+  background-color: #f9f9f9;
+  padding: 80px 0;
+  background-color: #d9e5ff;
+}
+
+.contact-container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.contact-title h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.help-text {
+  text-align: center;
+  font-weight: bold;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.contact-image {
+  flex: 3;
+  text-align: center;
+}
+
+.contact-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid #fff; /* Add a border for design */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* Add a transition for hover effect */
+}
+
+.contact-img:hover {
+  transform: scale(1.05); /* Scale up on hover for a subtle zoom effect */
+}
+
+.contact-details {
+  flex: 2;
+}
+
+.contact-details p {
+  margin-bottom: 20px;
+}
+
+.contact-details strong {
+  font-weight: bold;
+}
+
+
+/* Additional designs to make it fancy */
+
+.contact-section {
+  border-top: 2px solid #55027a;
+  border-bottom: 2px solid #55027a;
+}
+
+.contact-title h2 {
+  color: #55027a;
+  font-size: 36px;
+}
+
+.help-text {
+  color: #333;
+  font-size: 18px;
+}
+
+.contact-info {
+  background-color: #b9b9ff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details p {
+  color: #333;
+  font-size: 20px;
+}
+
+
+/* Footer */
+footer {
+  background-color: #1E65CF;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+  
+

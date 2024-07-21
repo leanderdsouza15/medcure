@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Health Improvement - Tips and Benefits</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #e74c3c;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        article::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 60px;
+            right: 0;
+            bottom: 0;
+            background: url("{% static 'img/kidneyimg.jpeg' %}") center/cover no-repeat;
+            filter: blur(1px); /* Apply a 5px blur effect */
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #3498db;
+            color: #fff;
+            padding: 5px;
+        }
+
+        .tip {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* Add CSS animations and interactions here */
+        /* Example: */
+        .tip:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+        /* Add more animations and interactions as needed */
+    </style>
+</head>
+<a href="{% url 'articles' %}" class="back-button">&lt; Back</a>
+    <header>
+        <h1>Kidney Health Improvement - Tips and Benefits</h1>
+    </header>
+    <article>
+        <p>Improving kidney health is essential for overall well-being. Here are some tips and benefits:</p>
+
+        <h2>Benefits of Improved Kidney Health</h2>
+        <ul>
+            <li>Reduced risk of kidney diseases</li>
+            <li>Increased energy levels</li>
+            <li>Better overall health</li>
+            <li>Improved longevity</li>
+        </ul>
+
+        <h2>What to Eat for Improved Kidney Health</h2>
+        <p>Eating a diet that boosts your kidney health is crucial. Include foods like:</p>
+        <ul>
+            <li>Cauliflower</li>
+            <li>Blueberries</li>
+            <li>Sea bass</li>
+            <li>Red grapes</li>
+            <li>Egg white</li>
+        </ul>
+
+        <h2>Kidney Health Improvement Tips</h2>
+        <p>Here are some tips for improving your kidney health:</p>
+        <ul>
+            <li>Keep active and fit</li>
+            <li>Manage your blood sugar</li>
+            <li>Monitor blood pressure</li>
+            <li>Monitor weight and eat a balanced diet</li>
+            <li>Stay hydrated</li>
+            <li>Stop smoking</li>
+            <li>Monitor OTC pill intake</li>
+        </ul>
+
+        <p class="tip">Remember, improved kidney health leads to a healthier life.</p>
+    </article>
+</body>
+</html>

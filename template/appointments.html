@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking</title>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Include FullCalendar CSS -->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css' rel='stylesheet' />
+    <!-- Include jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <!-- Include Moment.js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+    <!-- Include FullCalendar JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #cacdf7;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4b0082; /* Purple color */
+        }
+
+        label {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            color: #4b0082; /* Purple color */
+        }
+
+        label i {
+            margin-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4169e1; /* Royal blue color */
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #003366; /* Darker shade of blue */
+        }
+
+        #calendar {
+            margin-bottom: 20px;
+            background-color: #fff; /* White background */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .fc-button-group button {
+            background-color: #4169e1; /* Royal blue color */
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .fc-button-group button:hover {
+            background-color: #003366; /* Darker shade of blue */
+        }
+
+        .fc-toolbar {
+            background-color: #4b0082; /* Purple color */
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            padding: 10px;
+        }
+
+        .fc-button {
+            color: #fff;
+        }
+
+        .fc-button:hover {
+            background-color: #4169e1; /* Royal blue color */
+        }
+
+        .fc-event-container {
+            border-radius: 5px;
+        }
+
+        .fc-event {
+            background-color: #4169e1; /* Royal blue color */
+            border: none;
+        }
+
+        .fc-event:hover {
+            background-color: #003366; /* Darker shade of blue */
+        }
+
+        .fc-today {
+            background-color: #cce6ff; /* Light blue color */
+        }
+
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .time-slot {
+            padding: 10px;
+            border: 1px solid #4169e1; /* Royal blue color */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            background-color: #fff; /* White background */
+            color: #4169e1; /* Royal blue color */
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-slot:hover {
+            background-color: #4169e1; /* Royal blue color */
+            color: #fff;
+        }
+
+        .unavailable {
+            background-color: #ccc;
+            cursor: not-allowed;
+            color: #666; /* Grayed text color */
+        }
+
+        /* Highlight selected date */
+        .selected-date {
+            background-color: #4169e1; /* Royal blue color */
+            color: #fff;
+        }
+
+        /* Highlight selected time slot */
+        .selected-time-slot {
+            background-color: #4169e1; /* Royal blue color */
+            color: #fff;
+        }
+
+        .fc-prev-button, .fc-next-button {
+            background-color: transparent; /* Remove default background color */
+            border: none; /* Remove default border */
+            color: #4169e1; /* Royal blue color */
+            font-size: 1.5em; /* Adjust the font size as needed */
+        }
+    
+        .fc-prev-button:hover, .fc-next-button:hover {
+            background-color: transparent; /* Remove hover background color */
+            color: #003366; /* Darker shade of blue */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Appointment</h1>
+        <form id="appointmentForm" action="{% url 'submit_appointment' %}" method="post">
+            {% csrf_token %}
+            <label for="name"><i class="fas fa-user"></i> Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="phone"><i class="fas fa-phone"></i> Phone Number:</label>
+            <input type="text" id="phone" name="phone" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number">
+            
+
+            <input type="hidden" id="location" name="location" value="{{ request.GET.location }}">
+            <input type="hidden" id="tests" name="tests" value="{{ request.GET.tests }}">
+            <div id="calendar"></div>
+            <div class="time-slots"></div>
+        
+            <input type="hidden" id="selected_date" name="selected_date">
+            <input type="hidden" id="selected_time" name="selected_time">
+        
+            <label for="reason"><i class="fas fa-pencil-alt"></i> Comment:</label>
+            <textarea id="reason" name="reason"></textarea>
+        
+            <input type="submit" value="Submit">
+        </form>
+        
+    </div>
+
+    <script>
+        $(document).ready(function() {
+          // Initialize FullCalendar
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev', // Show only the previous arrow
+                center: 'title', // Display the month name in the center
+                right: 'next' // Show only the next arrow
+            },
+            defaultView: 'month',
+            defaultDate: '2024-05-01', // Set the default date to March 2024
+            selectable: true,
+            select: function(start, end) {
+                var selectedDate = start.format('YYYY-MM-DD');
+                $('#selected_date').val(selectedDate); 
+                showTimeSlots(selectedDate);
+                // Highlight selected date on the calendar
+                $('#calendar').find('.fc-day').removeClass('selected-date');
+                $('#calendar').find('.fc-day[data-date="' + selectedDate + '"]').addClass('selected-date');
+            }
+        });
+    
+            function showTimeSlots(date) {
+                // Example time slots for demonstration
+                var timeSlots = ['09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM'];
+    
+                // Clear existing time slots
+                $('.time-slots').empty();
+    
+                // Add time slots for the selected date
+                timeSlots.forEach(function(time) {
+                    var slot = $('<div>', { class: 'time-slot', text: time, 'data-time': time });
+                    $('.time-slots').append(slot);
+                });
+    
+                // Simulate some unavailable time slots
+                if (date === '2024-05-02') {
+                    $('.time-slot:contains("09:00 AM"), .time-slot:contains("01:00 PM")').addClass('unavailable').removeAttr('data-time');
+                }
+
+                if (date === '2024-05-05') {
+                    $('.time-slot:contains("10:00 AM"), .time-slot:contains("01:00 PM")').addClass('unavailable').removeAttr('data-time');
+                }
+
+                if (date === '2024-05-13') {
+                    $('.time-slot:contains("11:00 AM"), .time-slot:contains("03:00 PM")').addClass('unavailable').removeAttr('data-time');
+                }
+            }
+
+    
+            // Event delegation for time slot selection
+            $(document).on('click', '.time-slot', function() {
+                if (!$(this).hasClass('unavailable')) {
+                    var selectedTime = $(this).data('time');
+                    $('#selected_time').val(selectedTime); 
+                    $('.time-slot').removeClass('selected-time-slot');
+                    $(this).addClass('selected-time-slot');
+                }
+            });
+        });
+
+        phoneInput.addEventListener('input', function() {
+            const phoneValue = phoneInput.value;
+
+            // Use a regular expression to check if the input contains only numbers
+            if (!/^\d+$/.test(phoneValue)) {
+                $('#phone-error').text('Please enter a valid phone number (numbers only)');
+            } else {
+                $('#phone-error').text('');
+            }
+        });
+    
+    </script>    
+</body>
+</html>

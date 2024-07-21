@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical Exercise - Tips and Benefits</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #e74c3c;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        article::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 60px;
+            right: 0;
+            bottom: 0;
+            background: url("{% static 'img/exerciseimg.jpeg' %}") center/cover no-repeat;
+            filter: blur(1px); /* Apply a 5px blur effect */
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #3498db;
+            color: #fff;
+            padding: 5px;
+        }
+
+        .tip {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* Add CSS animations and interactions here */
+        /* Example: */
+        .tip:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+        /* Add more animations and interactions as needed */
+    </style>
+</head>
+<body>
+    <a href="{% url 'articles' %}" class="back-button">&lt; Back</a>
+    <header>
+        <h1>Physical Exercise - Tips and Benefits</h1>
+    </header>
+    <article>
+        <p>Physical exercise is essential for overall well-being. Here are some tips and benefits:</p>
+
+        <h2>Benefits of Regular Physical Exercise</h2>
+        <ul>
+            <li>Exercise can make you feel happier</li>
+            <li>Exercise can help with weight loss</li>
+            <li>Exercise combats health conditions and diseases</li>
+            <li>Exercise improves mood</li>
+            <li>Exercise boosts energy</li>
+            <li>Exercise promotes better sleep</li>
+        </ul>
+
+        <h2>Types of Physical Activities</h2>
+        <p>There are many types of physical activities, including:</p>
+        <ul>
+            <li>Swimming</li>
+            <li>Running</li>
+            <li>Jogging</li>
+            <li>Walking</li>
+            <li>Dancing</li>
+        </ul>
+
+        <h2>Health Tips</h2>
+        <p>Here are some tips for maintaining a healthy lifestyle through physical exercise:</p>
+        <ul>
+            <li>Exercise regularly to keep your body strong.</li>
+            <li>Manage stress through relaxation techniques.</li>
+            <li>Eat a balanced diet.</li>
+            <li>Get enough sleep for overall health.</li>
+        </ul>
+
+        <p class="tip">Remember, regular physical exercise leads to a healthier life.</p>
+    </article>
+</body>
+</html>

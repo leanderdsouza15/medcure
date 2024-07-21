@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #4b0082; /* Purple color */
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .success-icon {
+            font-size: 100px;
+            color: #4CAF50; /* Green color */
+            margin-bottom: 20px;
+        }
+
+        .note {
+            font-size: 16px;
+            color: #666; /* Gray color */
+            margin-bottom: 30px;
+        }
+
+        .home-link {
+            background-color: #4169e1; /* Royal blue color */
+            color: #fff;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .home-link:hover {
+            background-color: #003366; /* Darker shade of blue */
+        }
+
+        .home-link i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <i class="fas fa-check-circle success-icon"></i>
+        <h1>Appointment Submitted Successfully!</h1>
+        <p>Thank you for booking your appointment with us. We look forward to seeing you!</p>
+        <p class="note">An email confirmation will be sent to you shortly.</p>
+        <a href="{% url 'welcome' %}" class="home-link"><i class="fas fa-home"></i> Go to Homepage</a>
+    </div>
+</body>
+</html>

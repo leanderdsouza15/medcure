@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+    }
+    
+    /* Create a pseudo-element for the background blur */
+    body::before {
+        content: "";
+        background: url("{% static 'img/backg.jpeg' %}") center/cover no-repeat fixed;
+
+        filter: blur(5px); /* Adjust the blur amount as needed */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Place it behind the content */
+    }
+    
+    .container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        max-width: 800px;
+        width: 100%;
+    }
+    
+    .left-panel {
+        flex: 1;
+        background: #8D5DC2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    
+    .left-panel h1 {
+        color: #fff;
+        font-size: 32px;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .left-panel p {
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        margin: 20px 0;
+    }
+    
+    .left-panel img.logo {
+        width: 200px;
+        height: auto;
+    }
+    
+    .right-panel {
+        flex: 1.5; /* Adjust the flex value to make it wider */
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .right-panel h1 {
+        color: #333;
+        font-size: 28px;
+    }
+    
+    .right-panel form {
+        width: 80%; /* Adjust the width as needed */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Animated textboxes */
+    .right-panel input {
+        width: 100%; /* Make the textboxes extend the full width */
+        padding: 12px;
+        margin: 10px 0;
+        border: 2px solid #8D5DC2;
+        border-radius: 25px;
+        font-size: 18px;
+        transition: border 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .right-panel input:focus {
+        border: 2px solid #6A3E9A;
+        transform: scale(1.05);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    
+    .right-panel button {
+        background-color: #8D5DC2;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        padding: 16px 32px;
+        font-size: 20px;
+        cursor: pointer;
+        margin: 20px 0;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .right-panel button:hover {
+        background-color: #6A3E9A;
+        transform: scale(1.1);
+    }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color:  #8D5DC2; /* Blue shade */
+            border-radius: 25px; /* Adjust border-radius for a more rounded shape */
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+        }
+        
+        .back-button:hover {
+            background-color: #2980b9; /* Darker shade on hover */
+        }
+        .password-input-container {
+            position: relative;
+            width: calc(100% - 4px); /* Adjust the width of input */
+            padding-right: 26px; /* Adjust as needed */
+        }
+    
+        .password-input-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #8D5DC2;
+            border-radius: 25px;
+            font-size: 18px;
+            transition: border 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+    
+        .password-input-container input[type="password"]::placeholder {
+            padding-right: 30px; /* Adjust as needed to accommodate the eye icon */
+        }
+    
+        .password-input-container button {
+            position: absolute;
+            top: 5%; /* Adjust the top position */
+            right: 20px; /* Adjust the right position */
+            {% comment %} transform: translateY(-50%); {% endcomment %}
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-size: 21px; /* Adjust the font size of the icon */
+        }
+    
+        .password-input-container button i {
+            color: black; /* Set the color of the eye icon to black */
+        }
+    
+        .right-panel button {
+            margin-top: 20px; /* Add margin to separate the button from the eye icon */
+        }
+
+        
+</style>
+<body>
+    <a href="{% url 'index' %}" class="back-button">&lt; Home</a>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Welcome to Medical Portal</h1>
+            <p>Explore our medical services and get access to a world of healthcare.</p>
+            <img src="{% static 'img/logo.png' %}" alt="Medical Logo" class="logo">
+        </div>
+        <div class="right-panel">
+            <h1>Admin Login</h1>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <form method="post" action="{% url 'admin_login' %}">
+                {% csrf_token %}
+                <input type="text" name="email" placeholder="Email" required>
+                <div class="password-input-container">
+                    <input type="password" name="password" placeholder="Password " required>
+                    <button type="button" id="toggle-password"><i class="far fa-eye"></i></button>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    
+        <script>
+        // JavaScript for toggling password visibility
+        const togglePasswordButton = document.getElementById('toggle-password');
+        togglePasswordButton.addEventListener('click', function() {
+            togglePasswordVisibility('password');
+        });
+
+        function togglePasswordVisibility(passwordId) {
+            const passwordInput = document.querySelector(`input[name="${passwordId}"]`);
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePasswordButton.querySelector('i').className = type === 'password' ? 'far fa-eye' : 'far fa-eye-slash';
+        }
+    </script>
+</body>
+</html>

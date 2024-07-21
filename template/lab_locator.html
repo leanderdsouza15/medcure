@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Locator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/labfinder.css' %}">
+    <style>
+        /* Your additional CSS styles go here */
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+          <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-image">
+          <a href="{% url 'index' %}"><span class="logo-text"><b>Medcure</b></span></a>
+        </div>
+        <div class="nav-links">
+          <a href="{% url 'welcome' %}">Home</a>
+          <a href="{% url 'about_welcome' %}">About</a>
+          <a href="{% url 'services_welcome' %}">Services</a>
+          <a href="{% url 'articles_welcome' %}">Articles</a>
+        </div>
+      </nav>
+
+    <div class="search-section">
+        <h2 class="test-name">What test are you looking for<br> today? <span id="dynamic-test">Blood</span> Test</h2>
+        <form method="POST" action="{% url 'search_results' %}" class="search-bar">
+            {% csrf_token %}
+            <select name="location" class="location-dropdown">
+                <option value="">Select Location</option>
+                <option value="Malad">Malad</option>
+                <option value="Bandra">Bandra</option>
+                <option value="Santacruz">Santacruz</option>
+                {% comment %} <option value="Kandivali">Kandivali</option>
+                <option value="Borivali">Borivali</option> {% endcomment %}
+            </select>
+            <input type="text" name="test" placeholder="Search for tests" class="test-input">
+            <button type="submit" class="search-button">Search</button>
+            <!-- Autocomplete suggestions container -->
+            <div id="autocomplete-suggestions"></div>
+        </form>
+
+         
+        
+        <img src="{% static 'img/labg.png' %}" alt="Background Image" class="background-image">
+    </div>
+    
+    <div class="popular-categories">
+        <h2 class="category-title">Popular Categories</h2>
+        <div class="row">
+            <!-- First Row of Categories -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{% static 'img/blood.png' %}" class="card-img-top" alt="Blood Test Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Blood Test</h5>
+                        <p class="card-text">Blood tests are commonly used to screen for various conditions such as anemia, infection, and chronic diseases. They are also used to monitor health conditions and assess overall health status.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{% static 'img/sono.png' %}" class="card-img-top" alt="Sonography Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Sonography</h5>
+                        <p class="card-text">Sonography, also known as ultrasound imaging, is a non-invasive imaging technique used to visualize internal organs and structures. It is commonly used for prenatal care, diagnosing medical conditions, and guiding medical procedures.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{% static 'img/xray.png' %}" class="card-img-top" alt="X-ray Image">
+                    <div class="card-body">
+                        <h5 class="card-title">X-ray</h5>
+                        <p class="card-text">X-ray imaging is a common diagnostic tool used to visualize bones, organs, and tissues inside the body. It is useful for detecting fractures, infections, tumors, and other abnormalities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Second Row of Categories -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{% static 'img/mri.jpg' %}" class="card-img-top" alt="MRI Image">
+                    <div class="card-body">
+                        <h5 class="card-title">MRI</h5>
+                        <p class="card-text">MRI (Magnetic Resonance Imaging) is a non-invasive imaging technique that uses powerful magnets and radio waves to produce detailed images of internal organs and tissues. It is commonly used for diagnosing neurological disorders, joint injuries, and soft tissue abnormalities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{% static 'img/ecg.png' %}" class="card-img-top" alt="ECG Image">
+                    <div class="card-body">
+                        <h5 class="card-title">ECG</h5>
+                        <p class="card-text">ECG (Electrocardiogram) is a diagnostic test that records the electrical activity of the heart. It is used to detect heart rhythm abnormalities, heart attacks, and other cardiac conditions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{% static 'img/urine.jpg' %}" class="card-img-top" alt="Urine Test Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Urine Test</h5>
+                        <p class="card-text">Urine tests are performed to analyze the composition and characteristics of urine. They are used to diagnose various conditions such as urinary tract infections, kidney diseases, and metabolic disorders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <!-- User Reviews and Ratings Section -->
+        <div class="reviews-section">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div id="carouselTestimonials" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="testimonial">
+                                    <div class="testimonial-content">
+                                        <img src="{% static 'img/tes1.png' %}" alt="Testimonial Image" class="testimonial-image">
+                                        <p class="testimonial-text">"I was able to find the nearest lab easily using Lab Locator. The service is user-friendly and saved me a lot of time."</p>
+                                        <p class="testimonial-author">- Jane Smith</p>
+                                        <div class="rating">
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="testimonial">
+                                    <div class="testimonial-content">
+                                        <img src="{% static 'img/tes2.png' %}" alt="Testimonial Image" class="testimonial-image">
+                                        <p class="testimonial-text">"Lab Locator helped me find the best lab for my tests. The website is intuitive, and the information provided is accurate."</p>
+                                        <p class="testimonial-author">- John Doe</p>
+                                        <div class="rating">
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="testimonial">
+                                    <div class="testimonial-content">
+                                        <img src="{% static 'img/tes3.png' %}" alt="Testimonial Image" class="testimonial-image">
+                                        <p class="testimonial-text">"Lab Locator made it incredibly easy for me to schedule my lab tests. The platform is intuitive and saved me a lot of hassle."</p>
+                                        <p class="testimonial-author">-Michael Smith </p>
+                                        <div class="rating">
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="testimonial">
+                                    <div class="testimonial-content">
+                                        <img src="{% static 'img/tes4.png' %}" alt="Testimonial Image" class="testimonial-image">
+                                        <p class="testimonial-text">"I'm impressed by the efficiency of Lab Locator. It helped me find the most suitable lab for my needs within minutes."</p>
+                                        <p class="testimonial-author">- Emily Johnson</p>
+                                        <div class="rating">
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="testimonial">
+                                    <div class="testimonial-content">
+                                        <img src="{% static 'img/tes5.png' %}" alt="Testimonial Image" class="testimonial-image">
+                                        <p class="testimonial-text">"Lab Locator provides accurate and reliable information about nearby labs. I highly recommend it to anyone looking for lab services."</p>
+                                        <p class="testimonial-author">- Jessica Brown</p>
+                                        <div class="rating">
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="testimonial">
+                                    <div class="testimonial-content">
+                                        <img src="{% static 'img/tes6.png' %}" alt="Testimonial Image" class="testimonial-image">
+                                        <p class="testimonial-text">"Using Lab Locator was a breeze. I found exactly what I needed without any hassle. Thank you for such a great service!"</p>
+                                        <p class="testimonial-author">- David Wilson</p>
+                                        <div class="rating">
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                            <span class="star">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselTestimonials" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselTestimonials" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </a>
+            </div>
+        </div>
+
+        <div class="feedback-section">
+            <h2 class="section-title">Feedback</h2>
+            <p class="section-description">We value your feedback! Please share your thoughts with us.</p>
+            <form id="feedbackForm" class="feedback-form" method="POST" action="{% url 'submit_feedback' %}" >
+            
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message"><i class="fas fa-pencil-alt"></i> Your Feedback:</label>
+                    <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-rating">How do you rate your experience using Med Locator?</label>
+                    <div class="rating">
+                        <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                        <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                        <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                    </div>    
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+
+
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const testNames = ["Blood", "Diabetes", "Sonography", "Covid-19"]; // Add more test names as needed
+            let index = 0;
+
+            function rotateTestName() {
+                index = (index + 1) % testNames.length;
+                document.getElementById("dynamic-test").textContent = testNames[index];
+            }
+
+            setInterval(rotateTestName, 3000); // Change test name every 3 seconds
+        });
+
+            document.addEventListener("DOMContentLoaded", function() {
+                const inputField = document.querySelector(".test-input");
+                const autocompleteSuggestions = document.getElementById("autocomplete-suggestions");
+            
+                inputField.addEventListener("input", function() {
+                    const searchTerm = inputField.value.trim();
+            
+                    if (searchTerm.length === 0) {
+                        autocompleteSuggestions.classList.remove("show");
+                        return;
+                    }
+            
+                    fetch(`/autocomplete/?term=${encodeURIComponent(searchTerm)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            autocompleteSuggestions.innerHTML = "";
+                            data.forEach(testName => {
+                                const suggestion = document.createElement("div");
+                                suggestion.textContent = testName;
+                                suggestion.classList.add("autocomplete-suggestion");
+                                autocompleteSuggestions.appendChild(suggestion);
+                            });
+                            autocompleteSuggestions.classList.add("show");
+                        })
+                        .catch(error => {
+                            console.error("Error fetching autocomplete suggestions:", error);
+                        });
+                });
+            
+                autocompleteSuggestions.addEventListener("click", function(event) {
+                    if (event.target.classList.contains("autocomplete-suggestion")) {
+                        inputField.value = event.target.textContent;
+                        autocompleteSuggestions.classList.remove("show");
+                    }
+                });
+            
+                document.addEventListener("click", function(event) {
+                    if (!event.target.matches(".test-input") && !event.target.matches(".autocomplete-suggestion")) {
+                        autocompleteSuggestions.classList.remove("show");
+                    }
+                });
+            });
+            document.addEventListener("DOMContentLoaded", function() {
+                const stars = document.querySelectorAll('.rating > input');
+            
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        const clickedIndex = Array.from(stars).indexOf(star);
+                        for (let i = 0; i <= clickedIndex; i++) {
+                            stars[i].checked = true;
+                        }
+                        for (let i = clickedIndex + 1; i < stars.length; i++) {
+                            stars[i].checked = false;
+                        }
+                    });
+                });
+            });           
+    </script>
+</body>
+</html>

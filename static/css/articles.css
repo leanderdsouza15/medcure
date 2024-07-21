@@ -1,0 +1,150 @@
+body {
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    justify-items: center;
+}
+
+/* Style for the navigation elements */
+.container > div {
+    position: absolute;
+    color: #1E65CF;
+    font-family: Inter;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+/* Style for the "medcure" element (assuming it's your logo) */
+.container > div:first-child {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+/* Style for other navigation links */
+.container > div:not(:first-child) {
+    font-size: 25px;
+    top: 7px;
+    margin-right: 10px; /* Add margin between navigation elements */
+}
+
+/* Positioning for each navigation element */
+.container > div:nth-child(2) {
+    left: 358px;
+}
+
+.container > div:nth-child(3) {
+    left: 492px;
+}
+
+.container > div:nth-child(4) {
+    left: 620px;
+}
+
+.container > div:nth-child(5) {
+    left: 781px;
+}
+
+/* Add space between the navigation and articles */
+.articles {
+    margin-top: -13px; /* Adjust the margin value to control the space */
+}
+
+.navbar {
+    background-color: #dac5ff80;
+    color: #52009ec9;
+    padding: 16px 26px; /* Top and bottom padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    display: flex;       
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 60px; /* Adjust the size of your logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    font-size: 24px;
+  }
+  
+  .logo-text a {
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .nav-links a {
+    color: #52009ec9;
+    text-decoration: none; /* Remove underline from links */
+    font-size: 22px; /* Font size for navigation links */
+  }
+  
+  
+  /* Article styles */
+.articles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.article {
+    background: linear-gradient(45deg, #a4cfff, #7044ad); /* Different gradient background */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Maintain the size of the articles */
+    color: #fff; /* Text color */
+}
+
+.article img {
+    width: 95%; /* Set the width to 100% to make all images the same width */
+    height: 350px; /* Set a fixed height for uniformity */
+    object-fit: cover; /* This ensures the image covers the fixed height */
+    border-radius: 10px 10px 0 0;
+}
+
+
+.article h2 {
+    font-size: 24px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.article p {
+    font-size: 18px;
+    padding: 10px;
+}
+
+.article a {
+    background-color: #1E65CF;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.article a:hover {
+    background-color: #fff;
+    color: #1E65CF;
+
+}

@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Medicine & Lab Test Dashboard</title>
+  <!-- Link to Bootstrap CSS (you may need to adjust the path based on your file structure) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Link to Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <style>
+         /* Custom styles for the dashboard */
+     body {
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #fff; 
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-title1 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #fff; 
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+    }
+
+    /* Custom styles for gradient background */
+    .bg-gradient {
+      background: linear-gradient(to right,  #acd6ff, #4823ccb0);
+      color: white;
+    }
+
+    .navbar {
+      background: linear-gradient(to right, #c4acff, #8a7ef5);
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+      color: white !important;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    .navbar-brand img {
+      width: 60px; 
+      margin-right: 10px; 
+    }
+
+    .blurred-logo {
+      position: fixed;
+      top: 57%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+      filter: blur(0px); /* Adjust the blur radius as needed */
+      z-index: -1; /* Move the blurred logo behind other content */
+    }
+    
+    .blurred-logo img {
+      width: 350px; /* Adjust the size of the blurred logo */
+      {% comment %} opacity: 1.6; /* Adjust the opacity of the blurred logo */ {% endcomment %}
+    }
+    
+
+    /* Custom styles for appointments table */
+
+    #appointments-section {
+      display: none; /* Hide the appointments section by default */
+    }
+    
+    #appointments-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white; /* Set background color to white */
+    }
+    
+    #appointments-table th, #appointments-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    #appointments-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    
+    #appointments-table tbody tr:hover {
+      background-color: #b088f9; /* Purple hover */
+      color: white;
+    }    
+    
+/* Custom styles for feedback table */
+
+#feedbacks-section {
+  display: none; /* Hide the appointments section by default */
+}
+
+#feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white; /* Set background color to white */
+}
+
+#feedback-table th, #feedback-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#feedback-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+#feedback-table tbody tr:hover {
+  background-color: #b088f9; /* Purple hover */
+  color: white;
+}    
+
+/* Custom styles for medicines table */
+
+#medicines-section {
+  display: none; /* Hide the appointments section by default */
+}
+
+#medicines-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white; /* Set background color to white */
+}
+
+#medicines-table th, #medicines-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#medicines-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+#medicines-table tbody tr:hover {
+  background-color: #ddcdfc; /* Purple hover */
+  color: rgb(105, 41, 132);
+}    
+
+/* Custom styles for lab table */
+
+#lab-section {
+  display: none; /* Hide the appointments section by default */
+}
+
+#lab-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white; /* Set background color to white */
+}
+
+#lab-table th, #lab-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#lab-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+#lab-table tbody tr:hover {
+  background-color: #ddcdfc; /* Purple hover */
+  color: rgb(105, 41, 132);
+}    
+
+.action-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .action-button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px; 
+    }
+
+    .action-button:hover {
+      background-color: #dcc9ff; /* Darker purple */
+      color: #fff;
+    }
+
+   /* Custom status colors */
+   .status-accepted {
+      color: green;
+    }
+
+    .status-rejected {
+      color: red;
+    }
+
+    .status-pending {
+      color: blue;
+    }
+
+    /* Style for the Add Medicine Form */
+    #add-medicine-form {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    #add-lab-form {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .form-control-file {
+        width: auto;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#add-medicine-form {
+  margin-bottom: 20px; 
+}
+
+#add-lab-form {
+  margin-bottom: 20px; 
+}
+
+.action-button.edit-medicine-btn {
+  background-color: #00ffbb;
+  color: #fff;
+}
+
+.action-button.edit-lab-btn {
+  background-color: #00ffbb;
+  color: #fff;
+}
+
+.action-button.edit-medicine-btn:hover {
+  background-color: #00b380;
+}
+
+.action-button.edit-lab-btn:hover {
+  background-color: #00b380;
+}
+
+.action-button.delete-medicine-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.action-button.delete-lab-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.action-button.delete-medicine-btn:hover {
+  background-color: #a81c2a;
+}
+
+.action-button.delete-lab-btn:hover {
+  background-color: #a81c2a;
+}
+
+
+</style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
+    <a class="navbar-brand" href="{% url 'display' %}"><img src="{% static 'img/logo.png' %}" alt="Logo">Medcure Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'display' %}"><i class="fas fa-home"></i> Home</a>
+        </li>
+        {% comment %} <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
+        </li> {% endcomment %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'admin_login' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#" id="dark-mode-toggle"><i class="fas fa-adjust"></i> Dark Mode</a>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+
+  <div class="blurred-logo">
+    <img src="{% static 'img/logo.png' %}" alt="Blurred Logo">
+  </div>
+
+  {% if messages %}
+  {% for message in messages %}
+    <div id="alert-success" class="alert alert-success">
+        {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+  <!-- Main Content -->
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="card bg-gradient">
+          <div class="card-body">
+            <h5 class="card-title">Sidebar</h5>
+            <ul class="list-group">
+              {% comment %} <li class="list-group-item"><a href="#"><i class="fas fa-chart-line"></i> Dashboard</a></li> {% endcomment %}
+              <li class="list-group-item"><a href="{% url 'get_appointments' %}" id="medicines-link"><i class="fas fa-capsules"></i> Medicine</a></li>
+              <li class="list-group-item"><a href="{% url 'get_appointments' %}" id="lab-link"><i class="fas fa-flask"></i> Lab Tests</a></li>
+              <li class="list-group-item"><a href="{% url 'get_appointments' %}" id="appointments-link"><i class="far fa-calendar-alt"></i> Appointments</a></li>
+              <li class="list-group-item"><a href="{% url 'get_appointments' %}" id="feedback-link"><i class="far fa-comment-alt"></i> Feedbacks</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Medicines Section -->
+      <div class="col-md-9" id="medicines-section" style="display: none;">
+        <div class="card bg-gradient">
+          <div class="card-body">
+            <h2 class="card-title1">Medicines Administration</h2>
+            <!-- Add Medicine Form -->
+<form id="add-medicine-form" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="form-group">
+        <label for="store_name"><i class="fas fa-store-alt"></i> Store Name:</label>
+        <input type="text" id="store_name" name="store_name" class="form-control" placeholder="Store Name" required>
+    </div>
+    <div class="form-group">
+        <label for="medicine_name"><i class="fas fa-pills"></i> Medicine Name:</label>
+        <input type="text" id="medicine_name" name="medicine_name" class="form-control" placeholder="Medicine Name" required>
+    </div>
+    <div class="form-group">
+        <label for="cost"><i class="fas fa-money-bill-wave"></i> Cost:</label>
+        <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost" required>
+    </div>
+    <div class="form-group">
+        <label for="address"><i class="fas fa-map-marker-alt"></i> Address:</label>
+        <input type="text" id="address" name="address" class="form-control" placeholder="Address" required>
+    </div>
+    <div class="form-group">
+        <label for="location"><i class="fas fa-location-arrow"></i> Location:</label>
+        <input type="text" id="location" name="location" class="form-control" placeholder="Location" required>
+    </div>
+    <div class="form-group">
+        <label for="phone"><i class="fas fa-phone"></i> Phone:</label>
+        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" required>
+    </div>
+    <div class="form-group">
+        <label for="image"><i class="fas fa-image"></i> Image:</label>
+        <input type="file" id="image" name="image" class="form-control-file" accept="image/*">
+    </div>
+    <div class="form-group">
+        <label for="map_link"><i class="fas fa-map-marked-alt"></i> Map Link:</label>
+        <input type="url" id="map_link" name="map_link" class="form-control" placeholder="Map Link">
+    </div>
+    <div class="form-group">
+        <label for="side_effects"><i class="fas fa-exclamation-triangle"></i> Side Effects:</label>
+        <textarea id="side_effects" name="side_effects" class="form-control" placeholder="Side Effects"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="uses"><i class="fas fa-check"></i> Uses:</label>
+        <textarea id="uses" name="uses" class="form-control" placeholder="Uses"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Medicine</button>
+</form>
+
+<!-- Edit Medicine Modal -->
+<div class="modal fade" id="editMedicineModal" tabindex="-1" role="dialog" aria-labelledby="editMedicineModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editMedicineModalLabel">Edit Medicine</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-medicine-form">
+          {% csrf_token %}
+          <input type="hidden" id="edit-medicine-id" name="medicine_id">
+          <div class="form-group">
+            <label for="edit-store_name"><i class="fas fa-store"></i> Store Name:</label>
+            <input type="text" id="edit-store_name" name="store_name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-medicine_name"><i class="fas fa-pills"></i> Medicine Name:</label>
+            <input type="text" id="edit-medicine_name" name="medicine_name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-cost"><i class="fas fa-dollar-sign"></i> Cost:</label>
+            <input type="text" id="edit-cost" name="cost" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-address"><i class="fas fa-map-marker-alt"></i> Address:</label>
+            <input type="text" id="edit-address" name="address" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-location"><i class="fas fa-location-arrow"></i> Location:</label>
+            <input type="text" id="edit-location" name="location" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-phone"><i class="fas fa-phone"></i> Phone:</label>
+            <input type="text" id="edit-phone" name="phone" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-image"><i class="fas fa-image"></i> Image:</label>
+            <input type="file" id="edit-image" name="image" class="form-control-file" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label for="edit-map_link"><i class="fas fa-map-marked-alt"></i> Map Link:</label>
+            <input type="url" id="edit-map_link" name="map_link" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="edit-side_effects"><i class="fas fa-exclamation-triangle"></i> Side Effects:</label>
+            <textarea id="edit-side_effects" name="side_effects" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="edit-uses"><i class="fas fa-check"></i> Uses:</label>
+            <textarea id="edit-uses" name="uses" class="form-control"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+          <button type="submit"  class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="medicines-table">
+                <thead>
+                  <tr>
+                    <th>Action</th>
+                    <th>Sr.No.</th>
+                    <th>Store Name</th>
+                    <th>Medicine</th>
+                    <th>Cost</th>
+                    <th>Address</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Uses</th>
+                    <th>Side Effects</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for medicine in medicines %}
+                  <tr>
+                    <td>
+                      <!-- Edit button -->
+                      <a href="{% url 'edit_medicine' medicine.id %}" class="btn btn-primary action-button edit-medicine-btn"><i class="fas fa-edit"></i>Edit</a>
+                      <br>
+                      <br>
+                      <!-- Delete button -->
+                      <button class="btn btn-danger action-button delete-medicine-btn" data-medicine-id="{{ medicine.id }}"><i class="fas fa-trash-alt"></i>Delete</button>
+                    </td>
+                      <td>{{ medicine.id }}</td>
+                      <td>{{ medicine.store_name }}</td>
+                      <td>{{ medicine.medicine }}</td>
+                      <td>{{ medicine.cost }}</td>
+                      <td>{{ medicine.address }}</td>
+                      <td>{{ medicine.location }}</td>
+                      <td>{{ medicine.phone }}</td>
+                      <td>{{ medicine.uses }}</td>
+                      <td>{{ medicine.side_effects }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tests Section -->
+      <div class="col-md-9" id="lab-section" style="display: none;">
+        <div class="card bg-gradient">
+          <div class="card-body">
+            <h2 class="card-title1">Lab Test Administration</h2>
+            <!-- Add Lab Form -->
+<form id="add-lab-form" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="form-group">
+        <label for="name"><i class="fas fa-store-alt"></i> Lab Name:</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Lab Name" required>
+    </div>
+    <div class="form-group">
+        <label for="tests"><i class="fas fa-pills"></i> Test Name:</label>
+        <input type="text" id="tests" name="tests" class="form-control" placeholder="Test Name" required>
+    </div>
+    <div class="form-group">
+        <label for="cost"><i class="fas fa-money-bill-wave"></i> Cost:</label>
+        <input type="text" id="cost" name="cost" class="form-control" placeholder="Cost" required>
+    </div>
+    <div class="form-group">
+        <label for="address"><i class="fas fa-map-marker-alt"></i> Address:</label>
+        <input type="text" id="address" name="address" class="form-control" placeholder="Address" required>
+    </div>
+    <div class="form-group">
+        <label for="location"><i class="fas fa-location-arrow"></i> Location:</label>
+        <input type="text" id="location" name="location" class="form-control" placeholder="Location" required>
+    </div>
+    <div class="form-group">
+        <label for="phone"><i class="fas fa-phone"></i> Phone:</label>
+        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" required>
+    </div>
+    <div class="form-group">
+        <label for="image"><i class="fas fa-image"></i> Image:</label>
+        <input type="file" id="image" name="image" class="form-control-file" accept="image/*">
+    </div>
+    <div class="form-group">
+        <label for="map_link"><i class="fas fa-map-marked-alt"></i> Map Link:</label>
+        <input type="url" id="map_link" name="map_link" class="form-control" placeholder="Map Link">
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add </button>
+</form>
+
+<!-- Edit Lab Modal -->
+<div class="modal fade" id="editLabModal" tabindex="-1" role="dialog" aria-labelledby="editLabModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editLabModalLabel">Edit Lab Testing Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-lab-form">
+          {% csrf_token %}
+          <input type="hidden" id="edit-lab-id" name="lab_id">
+          <div class="form-group">
+            <label for="edit-lab_name"><i class="fas fa-store"></i> Lab Name:</label>
+            <input type="text" id="edit-lab_name" name="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-test_name"><i class="fas fa-pills"></i> Test Name:</label>
+            <input type="text" id="edit-test_name" name="tests" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-cost"><i class="fas fa-dollar-sign"></i> Cost:</label>
+            <input type="text" id="edit-cost" name="cost" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-address"><i class="fas fa-map-marker-alt"></i> Address:</label>
+            <input type="text" id="edit-address" name="address" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-location"><i class="fas fa-location-arrow"></i> Location:</label>
+            <input type="text" id="edit-location" name="location" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-phone"><i class="fas fa-phone"></i> Phone:</label>
+            <input type="text" id="edit-phone" name="phone" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-image"><i class="fas fa-image"></i> Image:</label>
+            <input type="file" id="edit-image" name="image" class="form-control-file" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label for="edit-map_link"><i class="fas fa-map-marked-alt"></i> Map Link:</label>
+            <input type="url" id="edit-map_link" name="map_link" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+          <button type="submit"  class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-bordered" id="lab-table">
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th>Sr.No.</th>
+        <th>Lab Name</th>
+        <th>Test Name</th>
+        <th>Cost</th>
+        <th>Address</th>
+        <th>Location</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for hospital in hospitals %}
+      <tr>
+        <td>
+          <!-- Edit button -->
+          <a href="{% url 'edit_hospital' hospital.id %}" class="btn btn-primary action-button edit-lab-btn"><i class="fas fa-edit"></i> Edit</a>
+          <br>
+          <br>
+          <!-- Delete button -->
+          <button class="btn btn-danger action-button delete-lab-btn" data-lab-id="{{ hospital.id }}"><i class="fas fa-trash-alt"></i>Delete</button>
+        </td>
+          <td>{{ hospital.id }}</td>
+          <td>{{ hospital.name }}</td>
+          <td>{{ hospital.tests }}</td>
+          <td>{{ hospital.cost }}</td>
+          <td>{{ hospital.address }}</td>
+          <td>{{ hospital.location }}</td>
+          <td>{{ hospital.phone }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</div>
+
+      <!-- Appointments Section -->
+      <div class="col-md-9" id="appointments-section" style="display: none;">
+        <div class="card bg-gradient">
+          <div class="card-body">
+            <h5 class="card-title">Appointments</h5>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="appointments-table">
+                <thead>
+                  <tr>
+                    <th>Patient Name</th>
+                    <th>Lab Location</th>
+                    <th>Test Type</th>
+                    <th>Date and Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for appointment in appointments %}
+                  <tr>
+                    <td>{{ appointment.name }}</td>
+                    <td>{{ appointment.location }}</td>
+                    <td>{{ appointment.tests }}</td>
+                    <td>{{ appointment.selected_date|date:"Y-m-d" }} {{ appointment.selected_time }}</td>
+                    <td class="status {% if appointment.status == 'Accepted' %}status-accepted{% elif appointment.status == 'Rejected' %}status-rejected{% else %}status-pending{% endif %}">{{ appointment.status }}</td>
+                    <td class="action-buttons">
+                      <button class="action-button accept" data-appointment-id="{{ appointment.id }}">Accept</button>
+                      <button class="action-button reject" data-appointment-id="{{ appointment.id }}">Reject</button>
+                    </td>
+                    <td>
+                      <!-- Add your action buttons or links here -->
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedbacks Section -->
+  <div class="col-md-12" id="feedbacks-section" style="display: none;">
+    <div class="card bg-gradient">
+      <div class="card-body">
+        <h2 class="card-title1">Feedback Administration</h2> 
+        <div class="table-responsive">
+          <table class="table table-bordered" id="feedback-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for feedback in feedbacks %}
+              <tr>
+                <td>{{ feedback.name }}</td>
+                <td>{{ feedback.email }}</td>
+                <td>{{ feedback.message }}</td>
+                <td>{{ feedback.rating }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript for Dark Mode toggle and Appointments handling -->
+  <script>
+    // Dark Mode Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+      });
+    });
+
+      // Handle click on Appointments link to show appointments section
+      document.getElementById('appointments-link').addEventListener('click', () => {
+        event.preventDefault();
+        document.getElementById('appointments-section').style.display = 'block';
+        document.getElementById('medicines-section').style.display = 'none';
+        document.getElementById('lab-section').style.display = 'none';
+        document.getElementById('feedbacks-section').style.display = 'none';
+      });
+    
+
+    // Handle click on Medicines link to show appointments section
+    document.getElementById('medicines-link').addEventListener('click', () => {
+        event.preventDefault();
+        document.getElementById('medicines-section').style.display = 'block';
+        document.getElementById('appointments-section').style.display = 'none';
+        document.getElementById('lab-section').style.display = 'none';
+        document.getElementById('feedbacks-section').style.display = 'none';
+        
+      });
+
+    // Handle click on Lab link to show appointments section
+    document.getElementById('lab-link').addEventListener('click', () => {
+        event.preventDefault();
+        document.getElementById('medicines-section').style.display = 'none';
+        document.getElementById('appointments-section').style.display = 'none';
+        document.getElementById('lab-section').style.display = 'block';
+        document.getElementById('feedbacks-section').style.display = 'none';
+      });
+
+    // Handle click on User link to show appointments section
+    document.getElementById('feedback-link').addEventListener('click', () => {
+        event.preventDefault();
+        document.getElementById('appointments-section').style.display = 'none';
+        document.getElementById('medicines-section').style.display = 'none';
+        document.getElementById('lab-section').style.display = 'none';
+        document.getElementById('feedbacks-section').style.display = 'block';
+      });
+     
+
+// Custom JavaScript for Dark Mode toggle and Appointments handling
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Handle click on Accept button
+    document.querySelectorAll('.action-button.accept').forEach(button => {
+        button.addEventListener('click', async () => {
+            const appointmentId = button.dataset.appointmentId;
+            const response = await fetch(`/accept_appointment/${appointmentId}/`);
+            const data = await response.json();
+            if (data.message === 'Appointment accepted and email sent successfully') {
+                alert('Appointment accepted and email sent successfully');
+            } else {
+                alert('Failed to accept appointment and send email');
+            }
+        });
+    });
+
+    // Handle click on Reject button
+    document.querySelectorAll('.action-button.reject').forEach(button => {
+        button.addEventListener('click', async () => {
+            const appointmentId = button.dataset.appointmentId;
+            const response = await fetch(`/reject_appointment/${appointmentId}/`);
+            const data = await response.json();
+            if (data.message === 'Appointment rejected and email sent successfully') {
+                alert('Appointment rejected and email sent successfully');
+            } else {
+                alert('Failed to reject appointment and send email');
+            }
+        });
+    });
+
+    // Handle click on Pending button (if you have one)
+    document.querySelectorAll('.action-button.pending').forEach(button => {
+        button.addEventListener('click', async () => {
+            const appointmentId = button.dataset.appointmentId;
+            const response = await fetch(`/pending_appointment/${appointmentId}/`);
+            const data = await response.json();
+            if (data.message === 'Appointment status updated to Pending') {
+                alert('Appointment status updated to Pending');
+                button.closest('tr').querySelector('.status').textContent = 'Pending';
+                button.closest('tr').classList.add('status-pending');
+            } else {
+                alert('Failed to update appointment status to Pending');
+            }
+        });
+    });
+});
+
+
+// Function to get CSRF token from cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Check if the cookie name matches the desired token name
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  // Handle click on Delete Medicine button in each row
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.delete-medicine-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const confirmDelete = confirm('Are you sure you want to delete this medicine?');
+        if (confirmDelete) {
+          const medicineId = button.dataset.medicineId; // Get the medicine ID from the button's data attribute
+          try {
+            const response = await fetch(`/delete_medicine/${medicineId}/`, { // Send a DELETE request to your Django view
+              method: 'DELETE',
+              headers: {
+                'X-CSRFToken': getCookie('csrftoken'), // Get CSRF token using the function
+              },
+            });
+            const data = await response.json(); // Parse the JSON response from the server
+            if (data.message === 'Medicine deleted successfully') {
+              alert('Medicine deleted successfully'); // Show a success message
+              // Remove the table row from the UI
+              button.closest('tr').remove(); // Remove the table row containing the deleted medicine
+              location.reload();
+            } else {
+              alert('Failed to delete medicine'); // Show an error message
+            }
+          } catch (error) {
+            console.error('Error:', error); // Log any errors to the console
+          }
+        }
+      });
+    });
+  });
+
+  // Handle click on Delete Lab button in each row
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.delete-lab-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const confirmDelete = confirm('Are you sure you want to delete this lab?');
+        if (confirmDelete) {
+          const labId = button.dataset.labId; 
+          try {
+            const response = await fetch(`/delete_lab/${labId}/`, { 
+              method: 'DELETE',
+              headers: {
+                'X-CSRFToken': getCookie('csrftoken'), // Get CSRF token using the function
+              },
+            });
+            const data = await response.json(); // Parse the JSON response from the server
+            if (data.message === 'Lab deleted successfully') {
+              alert('Lab deleted successfully'); // Show a success message
+              // Remove the table row from the UI
+              button.closest('tr').remove(); // Remove the table row containing the deleted medicine
+              location.reload();
+            } else {
+              alert('Failed to delete lab'); // Show an error message
+            }
+          } catch (error) {
+            console.error('Error:', error); // Log any errors to the console
+          }
+        }
+      });
+    });
+  });
+
+
+  // Add Medicine Form Submission
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('add-medicine-form').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent the default form submission
+      const formData = new FormData(event.target); // Get the form data
+      try {
+        const response = await fetch('/add_medicine/', { // Send a POST request to your Django view
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': getCookie('csrftoken'), // Get CSRF token using the function
+          },
+          body: formData,
+        });
+        const data = await response.json(); // Parse the JSON response from the server
+        if (data.message === 'Medicine added successfully') {
+          alert('Medicine added successfully'); // Show a success message
+          // Optionally, you can reload the page or update the medicines table
+          location.reload(); // Reload the page to reflect the new data
+        } else {
+          alert('Failed to add medicine'); // Show an error message
+        }
+      } catch (error) {
+        console.error('Error:', error); // Log any errors to the console
+      }
+    });
+  });
+
+// Add Lab Form Submission
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('add-lab-form').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent the default form submission
+      const formData = new FormData(event.target); // Get the form data
+      try {
+        const response = await fetch('/add_lab/', { 
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': getCookie('csrftoken'), // Get CSRF token using the function
+          },
+          body: formData,
+        });
+        const data = await response.json(); // Parse the JSON response from the server
+        if (data.message === 'Lab Details added successfully') {
+          alert('Lab Details added successfully'); // Show a success message
+          location.reload(); // Reload the page to reflect the new data
+        } else {
+          alert('Failed to add lab details'); // Show an error message
+        }
+      } catch (error) {
+        console.error('Error:', error); // Log any errors to the console
+      }
+    });
+  });
+
+
+  // Handle click on Edit Medicine button in each row
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.edit-medicine-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const medicineId = button.dataset.medicineId; // Get the medicine ID from the button's data attribute
+      // Fetch the medicine data using AJAX or directly from the DOM
+      const storeName = document.getElementById(`store_name_${medicineId}`).textContent.trim();
+      // Populate the modal/form fields with the medicine data
+      document.getElementById('edit-medicine-id').value = medicineId;
+      document.getElementById('edit-store_name').value = storeName;
+      // Open the edit medicine modal
+      $('#editMedicineModal').modal('show');
+    });
+  });
+});
+
+// Handle click on Edit Lab button in each row
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.edit-lab-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const labId = button.dataset.labId; 
+      
+      const labName = document.getElementById(`lab_name_${labId}`).textContent.trim();
+      
+      document.getElementById('edit-lab-id').value = labId;
+      document.getElementById('edit-lab_name').value = labName;
+      // Open the edit medicine modal
+      $('#editLabModal').modal('show');
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+            const successAlert = document.getElementById('alert-success');
+            if (successAlert) {
+                // Hide the success alert after 3 seconds
+                setTimeout(() => {
+                    successAlert.style.display = 'none';
+                }, 3000); // 3000 milliseconds = 3 seconds
+            }
+        });
+  </script>
+
+</body>
+</html>

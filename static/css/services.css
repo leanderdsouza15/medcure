@@ -1,0 +1,190 @@
+/* Centered Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem;
+}
+
+/* Navigation Styles */
+.container > div {
+    color: #1E65CF;
+    font-family: Inter;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.container > div:first-child {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.container > div:not(:first-child) {
+    font-size: 25px;
+    margin-right: 20px; /* Increase the margin between navigation elements */
+}
+
+.navbar {
+    background-color: #c5cdff80;
+    color: #52009ec9;
+    padding: 10px 26px; /* Top and bottom padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    display: flex;       
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 60px; /* Adjust the size of your logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    font-size: 24px;
+  }
+  
+  .logo-text a {
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .nav-links a {
+    color: #52009ec9;
+    text-decoration: none; /* Remove underline from links */
+    font-size: 22px; /* Font size for navigation links */
+  }
+  
+/* Styling for each service section */
+.service {
+    display: flex;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, white,  #B3E0FF);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.service:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-img {
+    flex: 1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.service-img .lottie {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.service:hover .service-img .lottie {
+    transform: scale(1.1);
+}
+
+.service-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.service-info h2 {
+    font-size: 24px;
+    margin-top: 0;
+    transition: color 0.3s ease-in-out;
+}
+
+.service:hover .service-info h2 {
+    color: #1E65CF;
+}
+
+.service-info p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    transition: color 0.3s ease-in-out;
+}
+
+.service:hover .service-info p {
+    color: #333;
+}
+
+.service-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #1E65CF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.service-btn:hover {
+    background-color: #144A99;
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+/* Add this CSS to your services.css file */
+
+/* ... (previous styles remain unchanged) ... */
+
+.service-info ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-info ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.service-info ul li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #1E65CF;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.service-info ul li:hover {
+    color: #1E65CF;
+}
+
+.service-info ul li:hover:before {
+    background-color: #144A99;
+}
+
+.service-info h2 {
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif; /* Use any desired font-family */
+    font-weight: 700;
+    color: whitesmoke; /* Your preferred color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    -webkit-text-stroke: 1px black; /* Text outline for WebKit browsers (Safari, Chrome) */
+    text-shadow: 1px black; /* Fallback for other browsers */
+}

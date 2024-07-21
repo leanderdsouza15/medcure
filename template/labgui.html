@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{% static 'css/labsearch.css' %}">
+    <style>
+        .hospital-card {
+            display: grid;
+            grid-template-columns: 120px 1fr; /* Image takes 120px width, rest for info */
+            align-items: center;
+            gap: 80px; /* Adjust the gap between image and info */
+            margin-bottom: 20px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .hospital-image {
+            width: 150%; /* Set image width to fill the container */
+            height: auto;
+            min-height: 200px; /* Set a minimum height for the images */
+            border-radius: 10px; /* Add border radius to image */
+        }
+
+        .hospital-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hospital-info h2 {
+            margin: 0;
+            font-size: 20px; /* Adjust font size for consistency */
+        }
+
+        .hospital-info p {
+            margin: 5px 0;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for hospital in hospitals %}
+            <div class="hospital-card">
+                <img src="{% static hospital.image %}" alt="{{ hospital.name }} Image" class="hospital-image">
+
+                <div class="hospital-info">
+                    <h2>{{ hospital.name }}</h2>
+                    <p>Address: {{ hospital.address }}</p>
+                    <p>Cost of Test: ${{ hospital.hospitaltest.cost }}</p>
+                    <p>Contact: {{ hospital.contact }}</p>
+                    <button onclick="openDirections('{{ hospital.directions_url }}')">Get Directions</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function openDirections(url) {
+            // Open the URL in a new tab
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<body>
+    <!-- Navigation bar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+      <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-image">
+      <a href="{% url 'index' %}"><span class="logo-text"><b>Medcure</b></span></a>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'services' %}">Services</a>
+      <a href="{% url 'articles' %}">Articles</a>
+    </div>
+  </nav>
+  
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="fancy-title">About Medcure</h2>
+                <p>Welcome to Medcure, your trusted source for comprehensive healthcare services. At Medcure, we believe that everyone deserves convenient access to top-quality healthcare. We are dedicated to improving the well-being of our valued users by providing a wide range of healthcare solutions that cater to your diverse needs.</p>
+                <p>Our mission is to empower you with the knowledge and tools to make informed healthcare decisions. We understand the importance of reliable and accurate information, and we are committed to delivering exceptional customer service throughout your healthcare journey.</p>
+                <p>With Medcure, you can access medical stores, locate nearby labs, discover a vast listing of medicines, and gain insights into healthcare articles. We strive to be your one-stop solution for all your medical and wellness needs, right in your local area.</p>
+            </div>
+            <div class="about-image">
+                <img src="{% static 'img/logo.png' %}" alt="Medcure Logo">
+            </div>
+        </div>
+        <div class="subheading">
+            <p class="catchy-phrase">Your Health, Our Priority</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Medcure Section -->
+    <section class="why-choose-section">
+        <h2>Why Choose Medcure?</h2>
+        <div class="reasons">
+            <div class="reason">
+                <h3>Convenient Access</h3>
+                <p>Access healthcare services conveniently in your local area.</p>
+            </div>
+            <div class="reason">
+                <h3>Accurate Information</h3>
+                <p>Get reliable and accurate healthcare information.</p>
+            </div>
+            <div class="reason">
+                <h3>Exceptional Customer Service</h3>
+                <p>Our commitment to delivering exceptional service to our users.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Medcure. All rights reserved.</p>
+    </footer>
+</body>
+</html>

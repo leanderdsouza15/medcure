@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<style>
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color:  #8D5DC2; /* Blue shade */
+    border-radius: 25px; /* Adjust border-radius for a more rounded shape */
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+.back-button:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+}
+</style>
+<body>
+    <a href="{% url 'index' %}" class="back-button">&lt; Back</a> 
+    <div>
+        <img src="{% static 'img/logo.png' %}" alt="Your Image">
+    </div>
+  
+    <a href="{% url 'login' %}" class="login-button">LOG IN</a>
+    <a href="{% url 'signup' %}" class="signup-button">SIGN UP</a>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+</head>
+<body>
+
+<!-- Navigation bar -->
+<nav class="navbar">
+  <div class="navbar-logo">
+    <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-image">
+    <a href="{% url 'welcome' %}"><span class="logo-text"><b>Medcure</b></span></a>
+  </div>
+  <div class="nav-links">
+    <a href="{% url 'welcome' %}">Home</a>
+    <a href="{% url 'about_welcome' %}">About</a>
+    <a href="{% url 'services_welcome' %}">Services</a>
+    <a href="{% url 'articles_welcome' %}">Articles</a>
+  </div>
+  {% if user_name %}
+  <div class="profile-box" id="profileBox">
+    <img class="profile-image" src="{% static 'img/icons.png' %}" alt="User">
+    <div class="profile-dropdown">
+      <span class="username">Welcome {{ user_name }}!</span>
+      <a href="{% url 'login' %}" class="logout-link">Logout</a>
+    </div>
+  </div>
+  {% endif %}
+</nav>
+
+<!-- Marquee section -->
+<div class="marquee-container">
+  <div class="marquee">
+    <p>WELCOME to Medcure - "Your one-stop solution". This is a Healthcare Service website for all your medical and test needs.</p>
+  </div>
+</div>
+
+<section class="about-section">
+  <div class="background-blur">
+    <img src="{% static 'img/start.png' %}" alt="Background Image" class="blur-image">
+  </div>
+  <div class="about-content">
+    <h2>Empowering Your Health<br>with Medcure</h2>
+    <p>Welcome to Medcure, your one-stop solution for healthcare services. We provide comprehensive medical and testing solutions to enhance your well-being.</p>
+    <a href="{% url 'services' %}"class="locate-now">Locate Now</a>
+  </div>
+</section>
+
+<!-- About Us section -->
+<section class="about-us-section">
+  <div class="container">
+    <div class="about-content-left">
+      <h2>About Us</h2>
+      <p>Welcome to Medcure, your trusted medical store and lab test finder. We are dedicated to providing top-quality healthcare services to our valued users.</p>
+      <p>We strive to meet the diverse needs of individuals and healthcare professionals. We are committed to delivering exceptional customer service and ensuring your health and well-being are our top priorities. Count on Medcure for all your medical needs!</p>
+    </div>
+    <div class="logo-container-big">
+      <img src="{% static 'img/logo.png' %}" alt="Big Logo" class="logo-big-image">
+    </div>
+  </div>
+</section>
+
+<!-- Book Test section -->
+<section class="book-test-section">
+  <div class="container">
+    <div class="card">
+      <div class="card-wrapper">
+        <div class="card-box">
+          <h4 class="card-title">Don't Wait, Book Your Test<br> Today!</h4>
+          <div class="card-btn">
+            <a href="{% url 'lab_locator' %}" class="book-now-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Our Services section -->
+<section class="our-services-section">
+  <div class="container">
+    <div class="services-content-left">
+      <h2>Our Services</h2>
+      <a href="{% url 'services' %}" class="view-services-btn">View all services <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="services-content-right">
+      <div class="service-card">
+        <div class="service-image">
+          <img src="{% static 'img/service1.png' %}" alt="Med Locator">
+        </div>
+        <div class="service-info">
+          <h3>Med Locator</h3>
+          <p>Locate the nearest medical store to buy the medicine you need.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="{% static 'img/service2.png' %}" alt="Lab Locator">
+        </div>
+        <div class="service-info">
+          <h3>Lab Locator</h3>
+          <p>Discover labs for your medical tests and examinations with a comprehensive list of labs.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="{% static 'img/service3.png' %}" alt="Health Articles">
+        </div>
+        <div class="service-info">
+          <h3>Health Articles</h3>
+          <p>Read informative articles on health and wellness.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="features-benefits-section">
+  <div class="container">
+    <div class="features">
+      <h2>Features</h2>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="circle">1</div>
+          <span class="arrow">&#8594;</span>
+          <p>Medical Store Locator</p>
+        </div>
+        <div class="feature-item">
+          <div class="circle">2</div>
+          <span class="arrow">&#8594;</span>
+          <p>Lab Test Finder</p>
+        </div>
+        <div class="feature-item">
+          <div class="circle">3</div>
+          <span class="arrow">&#8594;</span>
+          <p>Medicines Listing</p>
+        </div>
+        <div class="feature-item">
+          <div class="circle">4</div>
+          <span class="arrow">&#8594;</span>
+          <p>Comprehensive Store Information</p>
+        </div>
+        <div class="feature-item">
+          <div class="circle">5</div>
+          <span class="arrow">&#8594;</span>
+          <p>User-Friendly Interface</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="center-image">
+      <img src="{% static 'img/features.png' %}" alt="Image">
+    </div>
+
+    <div class="benefits">
+      <h2>Benefits</h2>
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <div class="circle">1</div>
+          <span class="arrow">&#8594;</span>
+          <p>Improved Health Outcomes</p>
+        </div>
+        <div class="benefit-item">
+          <div class="circle">2</div>
+          <span class="arrow">&#8594;</span>
+          <p>Time and Energy Savings</p>
+        </div>
+        <div class="benefit-item">
+          <div class="circle">3</div>
+          <span class="arrow">&#8594;</span>
+          <p>Convenient Access to Healthcare</p>
+        </div>
+        <div class="benefit-item">
+          <div class="circle">4</div>
+          <span class="arrow">&#8594;</span>
+          <p>Reliable and Accurate Information</p>
+        </div>
+        <div class="benefit-item">
+          <div class="circle">5</div>
+          <span class="arrow">&#8594;</span>
+          <p>Confidence in Healthcare Decisions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQs section -->
+<section class="faq-section">
+  <h1>Frequently Asked Questions</h1>
+  <div class="faq-container">
+    <div class="faq active">
+      <h3 class="faq-title">How do I find medical stores nearby?</h3>
+      <p class="faq-text">Simply enter your location on our platform and search for the medicine you need, and we'll show you the nearest medical stores in no time!</p>
+      <button class="faq-toggle">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="faq">
+      <h3 class="faq-title">How to find Lab tests?</h3>
+      <p class="faq-text">Simple select your location and search for the test you are in need of, our advanced search feature will lead you straight to the health treasure you seek.</p>
+      <button class="faq-toggle">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="faq">
+      <h3 class="faq-title">Why Read Health Articles?</h3>
+      <p class="faq-text">Dive into a world of knowledge and wellness with our engaging health articles. Stay informed, stay healthy!</p>
+      <button class="faq-toggle">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="faq">
+      <h3 class="faq-title">How to Book an Appointment?</h3>
+      <p class="faq-text">Simplify your life by booking lab test appointments hassle-free. Say goodbye to long waiting times and hello to convenience...It's quick, convenient, and secure!</p>
+      <button class="faq-toggle">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="faq">
+      <h3 class="faq-title">Is my data secure with Medcure?</h3>
+      <p class="faq-text">Your privacy and data security are our top priorities. Rest assured that your information is safe with us!</p>
+      <button class="faq-toggle">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+  </section>
+  
+  <!-- Contact Us section -->
+  <section class="contact-section">
+    <div class="contact-container">
+      <div class="contact-title">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="contact-info">
+        <div class="contact-image">
+          <!-- Add your contact image here -->
+          <img src="{% static 'img/contacts.png' %}" alt="Contact Image" class="contact-img">
+        </div>
+        <div class="contact-details">
+          <p class="help-text"><b>We are here to help!</b></p>
+          <p>Email us, 7 days a week. We aim to respond back within 24 hours.</p>
+          <p><strong>Email:</strong> medcure.healthservices@email.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    
+
+<footer>
+  <p>&copy; 2023 Medcure. All rights reserved.</p>
+</footer>
+
+<script>
+  document.getElementById('profileBox').addEventListener('click', function() {
+    // Toggle 'clicked' class to show/hide dropdown
+    this.classList.toggle('clicked');
+  });
+
+  // Disable back button functionality
+window.history.pushState(null, '', window.location.href);
+window.onpopstate = function () {
+    window.history.go(1);
+};
+
+const toggles = document.querySelectorAll(".faq-toggle");
+
+toggles.forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    toggle.parentElement.classList.toggle("active");
+  });
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Articles</title>
+    <link rel="stylesheet" href="{% static 'css/articles.css' %}">
+</head>
+<body>
+    <!-- Navigation bar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+      <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-image">
+      <a href="{% url 'index' %}"><span class="logo-text"><b>Medcure</b></span></a>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'services' %}">Services</a>
+      <a href="{% url 'articles' %}">Articles</a>
+    </div>
+  </nav>
+  
+        
+    <div class="articles">
+        <div class="article">
+            <img src="{% static 'img/heart hp1.png' %}" alt="Heart Health">
+            <h2>Heart Health</h2>
+            <p>Maintaining a healthy heart is essential for a long and fulfilling life. Regular exercise, a balanced diet, and stress management can significantly improve your heart's well-being. Learn more about how to keep your heart in top shape and reduce the risk of cardiovascular diseases.</p>
+            <a href="{% url 'heart' %}">Read More</a>
+        </div>
+
+        <div class="article">
+            <img src="{% static 'img/lungshp2.png' %}" alt="Lungs Care">
+            <h2>Lungs Care</h2>
+            <p>Your lungs play a crucial role in your overall health. Proper lung care can help you breathe easier and improve your quality of life. Discover tips on maintaining healthy lung function, understanding common respiratory issues, and promoting clean air in your environment.</p>
+            <a href="{% url 'lungs' %}">Read More</a>
+        </div>
+
+        <div class="article">
+            <img src="{% static 'img/kidneyhp3.png' %}" alt="Healthy Kidney">
+            <h2>Healthy Kidney</h2>
+            <p>Your kidneys are essential for filtering waste and maintaining fluid balance in your body. Learn how to protect and enhance your kidney health through proper hydration, a low-sodium diet, and awareness of kidney disease risk factors. Discover practical tips for ensuring your kidneys function optimally.</p>
+            <a href="{% url 'kidney' %}">Read More</a>
+        </div>
+
+        <div class="article">
+            <img src="{% static 'img/immune.png' %}" alt="Improve Immunity">
+            <h2>Improve Immunity</h2>
+            <p>Boosting your immune system is vital for warding off illnesses and staying healthy. Explore various ways to strengthen your immunity, such as dietary choices, lifestyle habits, and natural remedies. Learn how to support your body's defense mechanisms and stay resilient against infections.</p>
+            <a href="{% url 'immune' %}">Read More</a>
+        </div>
+
+        <div class="article">
+            <img src="{% static 'img/healthy-food.jpg' %}" alt="Healthy Diet">
+            <h2>Healthy Diet</h2>
+            <p>Learn about the benefits of maintaining a healthy diet and making nutritious food choices.</p>
+            <a href="{% url 'diet' %}">Read More</a>
+        </div>
+
+        <div class="article">
+            <img src="{% static 'img/ex.jpg' %}" alt="Physical Exercise">
+            <h2>Physical Exercise</h2>
+            <p>Discover the importance of regular physical exercise for a healthy lifestyle and well-being.</p>
+            <a href="{% url 'physical' %}">Read More</a>
+        </div>
+    </div>
+</body>
+</html>

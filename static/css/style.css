@@ -1,0 +1,79 @@
+body {
+   
+    background: linear-gradient(137deg, #CDEAE2 24.06%, rgba(124, 247, 255, 0.89) 80.73%, rgba(194, 235, 255, 0.45) 107.18%, rgba(172, 203, 255, 0.22) 121.35%, rgba(223, 156, 255, 0.20) 129.85%, rgba(203, 214, 255, 0.00) 137.41%, rgba(207, 217, 255, 0.00) 145.61%, rgba(207, 218, 255, 0.00) 187.99%, rgba(207, 218, 255, 0.00) 205.42%);
+    /*width: 1440px;
+    height: 1024px;*/
+    width: 100%; /* Make sure the background covers the entire viewport width */
+    height: 100vh; /* Make sure the background covers the entire viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+img {
+    width: 30%; /* Adjust the image size as needed */
+    max-width: 702px; /* Set a maximum width for the image */
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid #000;
+    background: url(medcure\ logo.png), lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: fixed; /* Position the image */
+    top: 40%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the image precisely */
+    animation: pulsate 2s infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* CSS for the "LOG IN" button */
+.login-button {
+    position: fixed;
+    left: 300px;
+    bottom: 60px;
+    background-color: #8D5DC2;
+    color: white;
+    padding: 20px 70px;
+    border: 5px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* CSS for the "SIGN UP" button */
+.signup-button {
+    position: fixed;
+    right: 300px;
+    bottom: 60px;
+    background-color: #8D5DC2;
+    color: white;
+    padding: 20px 70px;
+    border: 5px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Hover styles for both buttons */
+.login-button:hover, .signup-button:hover {
+    background-color: white;
+    color: #8D5DC2;
+    transform: scale(1.1);
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.3); /* Add box-shadow on hover */
+}

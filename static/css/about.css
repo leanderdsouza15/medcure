@@ -1,0 +1,210 @@
+/* Centered Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem;
+}
+
+/* Navigation Styles */
+.container > div {
+    color: #1E65CF;
+    font-family: Inter;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.container > div:first-child {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.container > div:not(:first-child) {
+    font-size: 25px;
+    margin-right: 20px; /* Increase the margin between navigation elements */
+}
+
+.navbar {
+    background-color: #c5cdff80;
+    color: #52009ec9;
+    padding: 10px 26px; /* Top and bottom padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    display: flex;       
+    align-items: center;
+  }
+  
+  .logo-image {
+    width: 60px; /* Adjust the size of your logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    font-size: 24px;
+  }
+  
+  .logo-text a {
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .nav-links a {
+    color: #52009ec9;
+    text-decoration: none; /* Remove underline from links */
+    font-size: 22px; /* Font size for navigation links */
+  }
+  
+
+/* About Section */
+.about-section {
+    background-color: #82b3ff; /* Darker blue background */
+    color: #fff; /* White text */
+    padding: 40px;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.about-text h2 {
+    font-size: 30px;
+    margin-bottom: 26px;
+    color:  white; /* Match text color to navigation */
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Add styles for the subheading */
+.subheading {
+    text-align: center;
+    padding: 20px;
+}
+
+.catchy-phrase {
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+}
+
+/* Define the bounce animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* Style the About Medcure Title */
+.fancy-title {
+    font-size: 80px; /* Increase the font size */
+    font-weight: 700;
+    color: #4a4f57; /* Choose a suitable text color */
+    text-transform: uppercase;
+    margin-bottom: 20px; /* Add more space below the title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow for a fancy effect */
+}
+
+
+/* Why Choose Medcure Section */
+.why-choose-section {
+    background-color: #cfebff; /* Light blue background */
+    text-align: center;
+    padding: 40px;
+}
+
+.why-choose-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #1E65CF;
+}
+
+.reasons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.reason {
+    flex: 1;
+    margin: 20px;
+    padding: 10px;
+    background-color: #fff; /* White reason background */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.reason h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #1E65CF;
+}
+
+/* Footer */
+footer {
+    background-color: #1E65CF;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+/* Small screens (e.g., smartphones) */
+@media screen and (max-width: 600px) {
+    .container > div {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    .about-section {
+        padding: 20px;
+    }
+
+    .about-text {
+        margin-right: 0;
+    }
+}
+
+/* Medium screens (e.g., tablets) */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .container > div {
+        font-size: 22px;
+        margin-right: 15px;
+    }
+}
+
+/* Large screens (e.g., desktops) */
+@media screen and (min-width: 1025px) {
+    .container > div {
+        font-size: 25px;
+        margin-right: 20px;
+    }
+}
